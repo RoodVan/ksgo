@@ -173,10 +173,6 @@ footer {
 /* @end */
 
 /* @Group Main */
-html {
-    //background: url(../img/test-bg.jpg) no-repeat top center / cover;
-    //background-attachment: fixed;
-}
 
 .body--home {
     background: url(../img/bg-head.jpg?v=.0) no-repeat top 80px center / cover, url(../img/bg.jpg) repeat-y top 80px center / cover, #191919;
@@ -189,8 +185,6 @@ html {
 }
 
 .header {
-    &--home {
-    }
     &-info {
         display: flex;
         align-items: center;
@@ -222,7 +216,7 @@ html {
     height: 80px;
     background-color: #070a18;
     &-in {
-        max-width: 1920px;
+        //max-width: 1920px;
         margin-left: auto;
         margin-right: auto;
         display: flex;
@@ -373,7 +367,7 @@ html {
         display: flex;
         align-items: center;
 
-        max-width: 1920px;
+        //max-width: 1920px;
         padding: 0 25px;
         margin: 0 auto;
         position: relative;
@@ -914,8 +908,6 @@ html {
             margin-top: 0;
         }
     }
-    &--standard {
-    }
     &--hide {
         .case {
             &-list {
@@ -1378,6 +1370,7 @@ html {
     &-in {
         display: flex;
         height: 100%;
+        max-width: 100%;
         align-items: center;
         justify-content: space-between;
         a {

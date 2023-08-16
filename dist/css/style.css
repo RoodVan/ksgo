@@ -4442,7 +4442,6 @@ footer {
 }
 
 .ldrop-in {
-    max-width: 1920px;
     margin-left: auto;
     margin-right: auto;
     display: -webkit-box;
@@ -4659,7 +4658,6 @@ footer {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    max-width: 1920px;
     padding: 0 25px;
     margin: 0 auto;
     position: relative;
@@ -6053,6 +6051,7 @@ footer {
     display: -ms-flexbox;
     display: flex;
     height: 100%;
+    max-width: 100%;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;

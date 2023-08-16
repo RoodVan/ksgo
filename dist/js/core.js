@@ -5142,10 +5142,15 @@ $(function () {
     const caseSlider = new Swiper(".js-case-carousel", {
         slidesPerView: "auto",
         spaceBetween: 0,
-        loop: false,
+        loop: true,
         navigation: {
             nextEl: ".js-case-next",
             prevEl: ".js-case-prev",
+        },
+        breakpoints: {
+            1024: {
+                loop: false,
+            },
         },
         // autoplay: {
         //     delay: 2500,
@@ -5157,7 +5162,7 @@ $(function () {
     const kSlider = new Swiper(".js-kslider", {
         slidesPerView: "auto",
         spaceBetween: 0,
-        loop: false,
+        loop: true,
         navigation: {
             nextEl: ".js-kslider-next",
             prevEl: ".js-kslider-prev",
