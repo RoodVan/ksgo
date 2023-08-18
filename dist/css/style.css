@@ -5431,7 +5431,7 @@ footer {
     min-height: 72px;
     border-bottom: 2px solid #1e2339;
     text-align: center;
-    background: url(../img/bg-case-title.png) no-repeat center bottom/auto 72px;
+    background: url(../img/fire.webp) no-repeat center bottom/contain;
     margin-bottom: 0;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -5592,7 +5592,7 @@ footer {
         margin-left: -20px;
         margin-right: -20px;
         min-height: 56px;
-        background: url(../img/bg-case-title.png) no-repeat center bottom/auto 56px;
+        background: url(../img/fire.webp) no-repeat center bottom/contain;
     }
 }
 
