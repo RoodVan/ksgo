@@ -20,7 +20,7 @@
         <link rel="icon" href="favicon.svg" />
 
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="css/style.min.css?v=0.4" />
+        <link rel="stylesheet" href="css/style.min.css?v=0.5" />
     </head>
     <body>
         <div class="wrapper">
@@ -181,11 +181,11 @@
                         <div class="acct-box">
                             <div class="acct-box__img">
                                 <img src="img/content/u.jpg" alt="" />
-                                <div class="acct-box__steam">
+                                <a href="#" class="acct-box__steam">
                                     <svg class="si-steam">
                                         <use xlink:href="#si-steam"></use>
                                     </svg>
-                                </div>
+                                </a>
                             </div>
                             <div class="acct-box__info">
                                 <a href="#" class="acct-box__link">cs_account</a>
@@ -252,7 +252,7 @@
                             </ul>
 
                             <div class="acct-filters__set">
-                                <button type="button" class="btn">
+                                <button type="button" onclick="popupOpen('#popup-trade');" class="btn">
                                     <svg class="si-traced">
                                         <use xlink:href="#si-traced"></use>
                                     </svg>
@@ -265,19 +265,19 @@
                         <div class="acct-things">
                             <div class="acct-thing">
                                 <div class="thing">
-                                    <div class="thing-item thing-item--r1" onclick="popupOpen('#popup-skin')">
+                                    <div class="thing-item thing-item--r1">
                                         <div class="thing-item__btns">
                                             <button class="btn thing-item__btns-price"><span>0.072</span> <b>₽</b></button>
-                                            <button class="btn thing-item__btns-pin">
+                                            <button onclick="popupOpen('#popup-skin')" class="btn thing-item__btns-pin">
                                                 <svg class="si-line-down">
                                                     <use xlink:href="#si-line-down"></use>
                                                 </svg>
                                             </button>
-                                            <button class="btn thing-item__btns-case">
+                                            <a href="#" class="btn thing-item__btns-case">
                                                 <svg class="si-case">
                                                     <use xlink:href="#si-case"></use>
                                                 </svg>
-                                            </button>
+                                            </a>
                                         </div>
                                         <div class="thing-item__skin">
                                             <img src="img/content/t4.png" alt="" />
@@ -288,19 +288,19 @@
                                 </div>
 
                                 <div class="thing">
-                                    <div class="thing-item thing-item--r2" onclick="popupOpen('#popup-skin')">
+                                    <div class="thing-item thing-item--r2">
                                         <div class="thing-item__btns">
                                             <button class="btn thing-item__btns-price"><span>0.072</span> <b>₽</b></button>
-                                            <button class="btn thing-item__btns-pin">
+                                            <button onclick="popupOpen('#popup-skin')" class="btn thing-item__btns-pin">
                                                 <svg class="si-line-down">
                                                     <use xlink:href="#si-line-down"></use>
                                                 </svg>
                                             </button>
-                                            <button class="btn thing-item__btns-case">
+                                            <a href="#" class="btn thing-item__btns-case">
                                                 <svg class="si-case">
                                                     <use xlink:href="#si-case"></use>
                                                 </svg>
-                                            </button>
+                                            </a>
                                         </div>
                                         <div class="thing-item__skin">
                                             <img src="img/content/t3.png" alt="" />
@@ -311,19 +311,19 @@
                                 </div>
 
                                 <div class="thing">
-                                    <div class="thing-item thing-item--r3" onclick="popupOpen('#popup-skin')">
+                                    <div class="thing-item thing-item--r3">
                                         <div class="thing-item__btns">
                                             <button class="btn thing-item__btns-price"><span>0.072</span> <b>₽</b></button>
-                                            <button class="btn thing-item__btns-pin">
+                                            <button onclick="popupOpen('#popup-skin')" class="btn thing-item__btns-pin">
                                                 <svg class="si-line-down">
                                                     <use xlink:href="#si-line-down"></use>
                                                 </svg>
                                             </button>
-                                            <button class="btn thing-item__btns-case">
+                                            <a href="#" class="btn thing-item__btns-case">
                                                 <svg class="si-case">
                                                     <use xlink:href="#si-case"></use>
                                                 </svg>
-                                            </button>
+                                            </a>
                                         </div>
                                         <div class="thing-item__skin">
                                             <img src="img/content/t2.png" alt="" />
@@ -334,19 +334,19 @@
                                 </div>
 
                                 <div class="thing">
-                                    <div class="thing-item thing-item--r7" onclick="popupOpen('#popup-skin')">
+                                    <div class="thing-item thing-item--r7">
                                         <div class="thing-item__btns">
                                             <button class="btn thing-item__btns-price"><span>0.072</span> <b>₽</b></button>
-                                            <button class="btn thing-item__btns-pin">
+                                            <button onclick="popupOpen('#popup-skin')" class="btn thing-item__btns-pin">
                                                 <svg class="si-line-down">
                                                     <use xlink:href="#si-line-down"></use>
                                                 </svg>
                                             </button>
-                                            <button class="btn thing-item__btns-case">
+                                            <a href="#" class="btn thing-item__btns-case">
                                                 <svg class="si-case">
                                                     <use xlink:href="#si-case"></use>
                                                 </svg>
-                                            </button>
+                                            </a>
                                         </div>
                                         <div class="thing-item__skin">
                                             <img src="img/content/t5.png" alt="" />
@@ -357,19 +357,19 @@
                                 </div>
 
                                 <div class="thing">
-                                    <div class="thing-item thing-item--r2" onclick="popupOpen('#popup-skin')">
+                                    <div class="thing-item thing-item--r2">
                                         <div class="thing-item__btns">
                                             <button class="btn thing-item__btns-price"><span>0.072</span> <b>₽</b></button>
-                                            <button class="btn thing-item__btns-pin">
+                                            <button onclick="popupOpen('#popup-skin')" class="btn thing-item__btns-pin">
                                                 <svg class="si-line-down">
                                                     <use xlink:href="#si-line-down"></use>
                                                 </svg>
                                             </button>
-                                            <button class="btn thing-item__btns-case">
+                                            <a href="#" class="btn thing-item__btns-case">
                                                 <svg class="si-case">
                                                     <use xlink:href="#si-case"></use>
                                                 </svg>
-                                            </button>
+                                            </a>
                                         </div>
                                         <div class="thing-item__skin">
                                             <img src="img/content/t3.png" alt="" />
@@ -380,19 +380,19 @@
                                 </div>
 
                                 <div class="thing">
-                                    <div class="thing-item thing-item--r3" onclick="popupOpen('#popup-skin')">
+                                    <div class="thing-item thing-item--r3">
                                         <div class="thing-item__btns">
                                             <button class="btn thing-item__btns-price"><span>0.072</span> <b>₽</b></button>
-                                            <button class="btn thing-item__btns-pin">
+                                            <button onclick="popupOpen('#popup-skin')" class="btn thing-item__btns-pin">
                                                 <svg class="si-line-down">
                                                     <use xlink:href="#si-line-down"></use>
                                                 </svg>
                                             </button>
-                                            <button class="btn thing-item__btns-case">
+                                            <a href="#" class="btn thing-item__btns-case">
                                                 <svg class="si-case">
                                                     <use xlink:href="#si-case"></use>
                                                 </svg>
-                                            </button>
+                                            </a>
                                         </div>
                                         <div class="thing-item__skin">
                                             <img src="img/content/t2.png" alt="" />
@@ -403,19 +403,19 @@
                                 </div>
 
                                 <div class="thing">
-                                    <div class="thing-item thing-item--r7" onclick="popupOpen('#popup-skin')">
+                                    <div class="thing-item thing-item--r7">
                                         <div class="thing-item__btns">
                                             <button class="btn thing-item__btns-price"><span>0.072</span> <b>₽</b></button>
-                                            <button class="btn thing-item__btns-pin">
+                                            <button onclick="popupOpen('#popup-skin')" class="btn thing-item__btns-pin">
                                                 <svg class="si-line-down">
                                                     <use xlink:href="#si-line-down"></use>
                                                 </svg>
                                             </button>
-                                            <button class="btn thing-item__btns-case">
+                                            <a href="#" class="btn thing-item__btns-case">
                                                 <svg class="si-case">
                                                     <use xlink:href="#si-case"></use>
                                                 </svg>
-                                            </button>
+                                            </a>
                                         </div>
                                         <div class="thing-item__skin">
                                             <img src="img/content/t5.png" alt="" />
@@ -559,7 +559,7 @@
                 <div class="popup-head">Подтверждение вывода скина</div>
                 <div class="popup-body">Вы точно хотите вывести этот скин?</div>
                 <div class="popup-footer">
-                    <button class="btn btn--pop" onclick="popupOpen('#popup-oy')">Да</button>
+                    <a href="#" class="btn btn--pop">Да</a>
                     <button class="btn btn--pop0" onclick="popupClose('#popup-skin')">Нет</button>
                 </div>
             </div>
@@ -583,7 +583,7 @@
                     </p>
                 </div>
                 <div class="popup-footer">
-                    <button class="btn btn--pop" onclick="popupOpen('#popup-trade')">Хорошо</button>
+                    <button class="btn btn--pop" onclick="popupClose('#popup-oy')">Хорошо</button>
                 </div>
             </div>
             <div class="popup-overlay"></div>
@@ -596,7 +596,9 @@
                 <div class="popup-trade__body">
                     <div class="popup-trade__info">
                         <p>Ваш Trade URL</p>
-                        <p class="t1">Найти ссылку можно <a href="https://store.steampowered.com/" target="_blank">на сайте Steam</a></p>
+                        <p class="t1">
+                            Найти ссылку можно <a href="https://steamcommunity.com/tradeoffer/new/?partner=181968850&token=mTF16105" target="_blank">на сайте Steam</a>
+                        </p>
                     </div>
                     <div class="popup-trade__form">
                         <svg class="si-url">
@@ -939,6 +941,6 @@
         <!-- ./ SVG SPRITE END  -->
 
         <script src="js/libs/jquery.min.js"></script>
-        <script src="js/core.min.js?v=0.3"></script>
+        <script src="js/core.min.js?v=0.4"></script>
     </body>
 </html>

@@ -1061,6 +1061,8 @@ body {
             img {
                 max-width: 100%;
                 height: auto;
+                transition: transform 0.3s;
+                will-change: transform;
             }
         }
         &__prices {
@@ -1085,6 +1087,13 @@ body {
         }
         &__btn {
             margin-top: 12px;
+        }
+        &:hover {
+            .case-item__icon {
+                img {
+                    transform: scale(1.1);
+                }
+            }
         }
     }
     &-bonus {
@@ -2008,7 +2017,7 @@ body {
             position: relative;
             padding: 0 20px;
             margin-top: 16px;
-            margin-left: -85px;
+            margin-left: 0;
             &:after {
                 left: 0;
                 right: 0;
@@ -2248,9 +2257,6 @@ body {
             flex: 0 0 14.2857%;
             max-width: 14.2857%;
             padding: 0 10px 20px;
-            &-item {
-                cursor: pointer;
-            }
         }
     }
     @media screen and (max-width: 1440px) {
