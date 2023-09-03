@@ -5101,6 +5101,149 @@
     return V.use(re), V;
 });
 
+/* jQuery Easing v1.3.2 */
+(function (h) {
+    h.easing.jswing = h.easing.swing;
+    h.extend(h.easing, {
+        def: "easeOutQuad",
+        swing: function (e, a, c, b, d) {
+            return h.easing[h.easing.def](e, a, c, b, d);
+        },
+        easeInQuad: function (e, a, c, b, d) {
+            return b * (a /= d) * a + c;
+        },
+        easeOutQuad: function (e, a, c, b, d) {
+            return -b * (a /= d) * (a - 2) + c;
+        },
+        easeInOutQuad: function (e, a, c, b, d) {
+            return 1 > (a /= d / 2) ? (b / 2) * a * a + c : (-b / 2) * (--a * (a - 2) - 1) + c;
+        },
+        easeInCubic: function (e, a, c, b, d) {
+            return b * (a /= d) * a * a + c;
+        },
+        easeOutCubic: function (e, a, c, b, d) {
+            return b * ((a = a / d - 1) * a * a + 1) + c;
+        },
+        easeInOutCubic: function (e, a, c, b, d) {
+            return 1 > (a /= d / 2) ? (b / 2) * a * a * a + c : (b / 2) * ((a -= 2) * a * a + 2) + c;
+        },
+        easeInQuart: function (e, a, c, b, d) {
+            return b * (a /= d) * a * a * a + c;
+        },
+        easeOutQuart: function (e, a, c, b, d) {
+            return -b * ((a = a / d - 1) * a * a * a - 1) + c;
+        },
+        easeInOutQuart: function (e, a, c, b, d) {
+            return 1 > (a /= d / 2) ? (b / 2) * a * a * a * a + c : (-b / 2) * ((a -= 2) * a * a * a - 2) + c;
+        },
+        easeInQuint: function (e, a, c, b, d) {
+            return b * (a /= d) * a * a * a * a + c;
+        },
+        easeOutQuint: function (e, a, c, b, d) {
+            return b * ((a = a / d - 1) * a * a * a * a + 1) + c;
+        },
+        easeInOutQuint: function (e, a, c, b, d) {
+            return 1 > (a /= d / 2) ? (b / 2) * a * a * a * a * a + c : (b / 2) * ((a -= 2) * a * a * a * a + 2) + c;
+        },
+        easeInSine: function (e, a, c, b, d) {
+            return -b * Math.cos((a / d) * (Math.PI / 2)) + b + c;
+        },
+        easeOutSine: function (e, a, c, b, d) {
+            return b * Math.sin((a / d) * (Math.PI / 2)) + c;
+        },
+        easeInOutSine: function (e, a, c, b, d) {
+            return (-b / 2) * (Math.cos((Math.PI * a) / d) - 1) + c;
+        },
+        easeInExpo: function (e, a, c, b, d) {
+            return 0 == a ? c : b * Math.pow(2, 10 * (a / d - 1)) + c;
+        },
+        easeOutExpo: function (e, a, c, b, d) {
+            return a == d ? c + b : b * (-Math.pow(2, (-10 * a) / d) + 1) + c;
+        },
+        easeInOutExpo: function (e, a, c, b, d) {
+            return 0 == a ? c : a == d ? c + b : 1 > (a /= d / 2) ? (b / 2) * Math.pow(2, 10 * (a - 1)) + c : (b / 2) * (-Math.pow(2, -10 * --a) + 2) + c;
+        },
+        easeInCirc: function (e, a, c, b, d) {
+            return -b * (Math.sqrt(1 - (a /= d) * a) - 1) + c;
+        },
+        easeOutCirc: function (e, a, c, b, d) {
+            return b * Math.sqrt(1 - (a = a / d - 1) * a) + c;
+        },
+        easeInOutCirc: function (e, a, c, b, d) {
+            return 1 > (a /= d / 2) ? (-b / 2) * (Math.sqrt(1 - a * a) - 1) + c : (b / 2) * (Math.sqrt(1 - (a -= 2) * a) + 1) + c;
+        },
+        easeInElastic: function (e, a, c, b, d) {
+            e = 1.70158;
+            var f = 0,
+                g = b;
+            if (0 == a) return c;
+            if (1 == (a /= d)) return c + b;
+            f || (f = 0.3 * d);
+            g < Math.abs(b) ? ((g = b), (e = f / 4)) : (e = (f / (2 * Math.PI)) * Math.asin(b / g));
+            return -(g * Math.pow(2, 10 * --a) * Math.sin((2 * (a * d - e) * Math.PI) / f)) + c;
+        },
+        easeOutElastic: function (e, a, c, b, d) {
+            e = 1.70158;
+            var f = 0,
+                g = b;
+            if (0 == a) return c;
+            if (1 == (a /= d)) return c + b;
+            f || (f = 0.3 * d);
+            g < Math.abs(b) ? ((g = b), (e = f / 4)) : (e = (f / (2 * Math.PI)) * Math.asin(b / g));
+            return g * Math.pow(2, -10 * a) * Math.sin((2 * (a * d - e) * Math.PI) / f) + b + c;
+        },
+        easeInOutElastic: function (e, a, c, b, d) {
+            e = 1.70158;
+            var f = 0,
+                g = b;
+            if (0 == a) return c;
+            if (2 == (a /= d / 2)) return c + b;
+            f || (f = 0.3 * d * 1.5);
+            g < Math.abs(b) ? ((g = b), (e = f / 4)) : (e = (f / (2 * Math.PI)) * Math.asin(b / g));
+            return 1 > a
+                ? -0.5 * g * Math.pow(2, 10 * --a) * Math.sin((2 * (a * d - e) * Math.PI) / f) + c
+                : g * Math.pow(2, -10 * --a) * Math.sin((2 * (a * d - e) * Math.PI) / f) * 0.5 + b + c;
+        },
+        easeInBack: function (e, a, c, b, d, f) {
+            void 0 == f && (f = 1.70158);
+            return b * (a /= d) * a * ((f + 1) * a - f) + c;
+        },
+        easeOutBack: function (e, a, c, b, d, f) {
+            void 0 == f && (f = 1.70158);
+            return b * ((a = a / d - 1) * a * ((f + 1) * a + f) + 1) + c;
+        },
+        easeInOutBack: function (e, a, c, b, d, f) {
+            void 0 == f && (f = 1.70158);
+            return 1 > (a /= d / 2) ? (b / 2) * a * a * (((f *= 1.525) + 1) * a - f) + c : (b / 2) * ((a -= 2) * a * (((f *= 1.525) + 1) * a + f) + 2) + c;
+        },
+        easeInBounce: function (e, a, c, b, d) {
+            return b - h.easing.easeOutBounce(e, d - a, 0, b, d) + c;
+        },
+        easeOutBounce: function (e, a, c, b, d) {
+            return (a /= d) < 1 / 2.75
+                ? 7.5625 * b * a * a + c
+                : a < 2 / 2.75
+                ? b * (7.5625 * (a -= 1.5 / 2.75) * a + 0.75) + c
+                : a < 2.5 / 2.75
+                ? b * (7.5625 * (a -= 2.25 / 2.75) * a + 0.9375) + c
+                : b * (7.5625 * (a -= 2.625 / 2.75) * a + 0.984375) + c;
+        },
+        easeInOutBounce: function (e, a, c, b, d) {
+            return a < d / 2 ? 0.5 * h.easing.easeInBounce(e, 2 * a, 0, b, d) + c : 0.5 * h.easing.easeOutBounce(e, 2 * a - d, 0, b, d) + 0.5 * b + c;
+        },
+    });
+})(jQuery);
+
+/**
+ * name: fireworks-js
+ * version: 2.10.7
+ * author: Vitalij Ryndin (https://crashmax.ru)
+ * homepage: https://fireworks.js.org
+ * license MIT
+ */
+/* prettier-ignore */
+(function(c,u){typeof exports=="object"&&typeof module<"u"?u(exports):typeof define=="function"&&define.amd?define(["exports"],u):(c=typeof globalThis<"u"?globalThis:c||self,u(c.Fireworks={}))})(this,function(c){"use strict";function u(e){return Math.abs(Math.floor(e))}function p(e,t){return Math.random()*(t-e)+e}function o(e,t){return Math.floor(p(e,t+1))}function g(e,t,i,s){const n=Math.pow;return Math.sqrt(n(e-i,2)+n(t-s,2))}function f(e,t,i=1){if(e>360||e<0)throw new Error(`Expected hue 0-360 range, got \`${e}\``);if(t>100||t<0)throw new Error(`Expected lightness 0-100 range, got \`${t}\``);if(i>1||i<0)throw new Error(`Expected alpha 0-1 range, got \`${i}\``);return`hsla(${e}, 100%, ${t}%, ${i})`}const v=e=>{if(typeof e=="object"&&e!==null){if(typeof Object.getPrototypeOf=="function"){const t=Object.getPrototypeOf(e);return t===Object.prototype||t===null}return Object.prototype.toString.call(e)==="[object Object]"}return!1},b=["__proto__","constructor","prototype"],w=(...e)=>e.reduce((t,i)=>(Object.keys(i).forEach(s=>{b.includes(s)||(Array.isArray(t[s])&&Array.isArray(i[s])?t[s]=i[s]:v(t[s])&&v(i[s])?t[s]=w(t[s],i[s]):t[s]=i[s])}),t),{});function S(e,t){let i;return(...s)=>{i&&clearTimeout(i),i=setTimeout(()=>e(...s),t)}}class O{x;y;ctx;hue;friction;gravity;flickering;lineWidth;explosionLength;angle;speed;brightness;coordinates=[];decay;alpha=1;constructor({x:t,y:i,ctx:s,hue:n,decay:h,gravity:a,friction:r,brightness:l,flickering:d,lineWidth:x,explosionLength:m}){for(this.x=t,this.y=i,this.ctx=s,this.hue=n,this.gravity=a,this.friction=r,this.flickering=d,this.lineWidth=x,this.explosionLength=m,this.angle=p(0,Math.PI*2),this.speed=o(1,10),this.brightness=o(l.min,l.max),this.decay=p(h.min,h.max);this.explosionLength--;)this.coordinates.push([t,i])}update(t){this.coordinates.pop(),this.coordinates.unshift([this.x,this.y]),this.speed*=this.friction,this.x+=Math.cos(this.angle)*this.speed,this.y+=Math.sin(this.angle)*this.speed+this.gravity,this.alpha-=this.decay,this.alpha<=this.decay&&t()}draw(){const t=this.coordinates.length-1;this.ctx.beginPath(),this.ctx.lineWidth=this.lineWidth,this.ctx.fillStyle=f(this.hue,this.brightness,this.alpha),this.ctx.moveTo(this.coordinates[t][0],this.coordinates[t][1]),this.ctx.lineTo(this.x,this.y),this.ctx.strokeStyle=f(this.hue,this.flickering?p(0,this.brightness):this.brightness,this.alpha),this.ctx.stroke()}}class E{constructor(t,i){this.options=t,this.canvas=i,this.pointerDown=this.pointerDown.bind(this),this.pointerUp=this.pointerUp.bind(this),this.pointerMove=this.pointerMove.bind(this)}active=!1;x;y;get mouseOptions(){return this.options.mouse}mount(){this.canvas.addEventListener("pointerdown",this.pointerDown),this.canvas.addEventListener("pointerup",this.pointerUp),this.canvas.addEventListener("pointermove",this.pointerMove)}unmount(){this.canvas.removeEventListener("pointerdown",this.pointerDown),this.canvas.removeEventListener("pointerup",this.pointerUp),this.canvas.removeEventListener("pointermove",this.pointerMove)}usePointer(t,i){const{click:s,move:n}=this.mouseOptions;(s||n)&&(this.x=t.pageX-this.canvas.offsetLeft,this.y=t.pageY-this.canvas.offsetTop,this.active=i)}pointerDown(t){this.usePointer(t,this.mouseOptions.click)}pointerUp(t){this.usePointer(t,!1)}pointerMove(t){this.usePointer(t,this.active)}}class M{hue;rocketsPoint;opacity;acceleration;friction;gravity;particles;explosion;mouse;boundaries;sound;delay;brightness;decay;flickering;intensity;traceLength;traceSpeed;lineWidth;lineStyle;autoresize;constructor(){this.autoresize=!0,this.lineStyle="round",this.flickering=50,this.traceLength=3,this.traceSpeed=10,this.intensity=30,this.explosion=5,this.gravity=1.5,this.opacity=.5,this.particles=50,this.friction=.95,this.acceleration=1.05,this.hue={min:0,max:360},this.rocketsPoint={min:50,max:50},this.lineWidth={explosion:{min:1,max:3},trace:{min:1,max:2}},this.mouse={click:!1,move:!1,max:1},this.delay={min:30,max:60},this.brightness={min:50,max:80},this.decay={min:.015,max:.03},this.sound={enabled:!1,files:["explosion0.mp3","explosion1.mp3","explosion2.mp3"],volume:{min:4,max:8}},this.boundaries={debug:!1,height:0,width:0,x:50,y:50}}update(t){Object.assign(this,w(this,t))}}class z{constructor(t,i){this.options=t,this.render=i}tick=0;rafId=0;fps=60;tolerance=.1;now;mount(){this.now=performance.now();const t=1e3/this.fps,i=s=>{this.rafId=requestAnimationFrame(i);const n=s-this.now;n>=t-this.tolerance&&(this.render(),this.now=s-n%t,this.tick+=n*(this.options.intensity*Math.PI)/1e3)};this.rafId=requestAnimationFrame(i)}unmount(){cancelAnimationFrame(this.rafId)}}class L{constructor(t,i,s){this.options=t,this.updateSize=i,this.container=s}resizer;mount(){if(!this.resizer){const t=S(()=>this.updateSize(),100);this.resizer=new ResizeObserver(t)}this.options.autoresize&&this.resizer.observe(this.container)}unmount(){this.resizer&&this.resizer.unobserve(this.container)}}class T{constructor(t){this.options=t,this.init()}buffers=[];audioContext;onInit=!1;get isEnabled(){return this.options.sound.enabled}get soundOptions(){return this.options.sound}init(){!this.onInit&&this.isEnabled&&(this.onInit=!0,this.audioContext=new(window.AudioContext||window.webkitAudioContext),this.loadSounds())}async loadSounds(){for(const t of this.soundOptions.files){const i=await(await fetch(t)).arrayBuffer();this.audioContext.decodeAudioData(i).then(s=>{this.buffers.push(s)}).catch(s=>{throw s})}}play(){if(this.isEnabled&&this.buffers.length){const t=this.audioContext.createBufferSource(),i=this.buffers[o(0,this.buffers.length-1)],s=this.audioContext.createGain();t.buffer=i,s.gain.value=p(this.soundOptions.volume.min/100,this.soundOptions.volume.max/100),s.connect(this.audioContext.destination),t.connect(s),t.start(0)}else this.init()}}class C{x;y;sx;sy;dx;dy;ctx;hue;speed;acceleration;traceLength;totalDistance;angle;brightness;coordinates=[];currentDistance=0;constructor({x:t,y:i,dx:s,dy:n,ctx:h,hue:a,speed:r,traceLength:l,acceleration:d}){for(this.x=t,this.y=i,this.sx=t,this.sy=i,this.dx=s,this.dy=n,this.ctx=h,this.hue=a,this.speed=r,this.traceLength=l,this.acceleration=d,this.totalDistance=g(t,i,s,n),this.angle=Math.atan2(n-i,s-t),this.brightness=o(50,70);this.traceLength--;)this.coordinates.push([t,i])}update(t){this.coordinates.pop(),this.coordinates.unshift([this.x,this.y]),this.speed*=this.acceleration;const i=Math.cos(this.angle)*this.speed,s=Math.sin(this.angle)*this.speed;this.currentDistance=g(this.sx,this.sy,this.x+i,this.y+s),this.currentDistance>=this.totalDistance?t(this.dx,this.dy,this.hue):(this.x+=i,this.y+=s)}draw(){const t=this.coordinates.length-1;this.ctx.beginPath(),this.ctx.moveTo(this.coordinates[t][0],this.coordinates[t][1]),this.ctx.lineTo(this.x,this.y),this.ctx.strokeStyle=f(this.hue,this.brightness),this.ctx.stroke()}}class y{target;container;canvas;ctx;width;height;traces=[];explosions=[];waitStopRaf;running=!1;opts;sound;resize;mouse;raf;constructor(t,i={}){this.target=t,this.container=t,this.opts=new M,this.createCanvas(this.target),this.updateOptions(i),this.sound=new T(this.opts),this.resize=new L(this.opts,this.updateSize.bind(this),this.container),this.mouse=new E(this.opts,this.canvas),this.raf=new z(this.opts,this.render.bind(this))}get isRunning(){return this.running}get version(){return"2.10.7"}get currentOptions(){return this.opts}start(){this.running||(this.canvas.isConnected||this.createCanvas(this.target),this.running=!0,this.resize.mount(),this.mouse.mount(),this.raf.mount())}stop(t=!1){!this.running||(this.running=!1,this.resize.unmount(),this.mouse.unmount(),this.raf.unmount(),this.clear(),t&&this.canvas.remove())}async waitStop(t){if(!!this.running)return new Promise(i=>{this.waitStopRaf=()=>{!this.waitStopRaf||(requestAnimationFrame(this.waitStopRaf),!this.traces.length&&!this.explosions.length&&(this.waitStopRaf=null,this.stop(t),i()))},this.waitStopRaf()})}pause(){this.running=!this.running,this.running?this.raf.mount():this.raf.unmount()}clear(){!this.ctx||(this.traces=[],this.explosions=[],this.ctx.clearRect(0,0,this.width,this.height))}launch(t=1){for(let i=0;i<t;i++)this.createTrace();this.waitStopRaf||(this.start(),this.waitStop())}updateOptions(t){this.opts.update(t)}updateSize({width:t=this.container.clientWidth,height:i=this.container.clientHeight}={}){this.width=t,this.height=i,this.canvas.width=t,this.canvas.height=i,this.updateBoundaries({...this.opts.boundaries,width:t,height:i})}updateBoundaries(t){this.updateOptions({boundaries:t})}createCanvas(t){t instanceof HTMLCanvasElement?(t.isConnected||document.body.append(t),this.canvas=t):(this.canvas=document.createElement("canvas"),this.container.append(this.canvas)),this.ctx=this.canvas.getContext("2d"),this.updateSize()}render(){if(!this.ctx||!this.running)return;const{opacity:t,lineStyle:i,lineWidth:s}=this.opts;this.ctx.globalCompositeOperation="destination-out",this.ctx.fillStyle=`rgba(0, 0, 0, ${t})`,this.ctx.fillRect(0,0,this.width,this.height),this.ctx.globalCompositeOperation="lighter",this.ctx.lineCap=i,this.ctx.lineJoin="round",this.ctx.lineWidth=p(s.trace.min,s.trace.max),this.initTrace(),this.drawTrace(),this.drawExplosion()}createTrace(){const{hue:t,rocketsPoint:i,boundaries:s,traceLength:n,traceSpeed:h,acceleration:a,mouse:r}=this.opts;this.traces.push(new C({x:this.width*o(i.min,i.max)/100,y:this.height,dx:this.mouse.x&&r.move||this.mouse.active?this.mouse.x:o(s.x,s.width-s.x*2),dy:this.mouse.y&&r.move||this.mouse.active?this.mouse.y:o(s.y,s.height*.5),ctx:this.ctx,hue:o(t.min,t.max),speed:h,acceleration:a,traceLength:u(n)}))}initTrace(){if(this.waitStopRaf)return;const{delay:t,mouse:i}=this.opts;(this.raf.tick>o(t.min,t.max)||this.mouse.active&&i.max>this.traces.length)&&(this.createTrace(),this.raf.tick=0)}drawTrace(){let t=this.traces.length;for(;t--;)this.traces[t].draw(),this.traces[t].update((i,s,n)=>{this.initExplosion(i,s,n),this.sound.play(),this.traces.splice(t,1)})}initExplosion(t,i,s){const{particles:n,flickering:h,lineWidth:a,explosion:r,brightness:l,friction:d,gravity:x,decay:m}=this.opts;let P=u(n);for(;P--;)this.explosions.push(new O({x:t,y:i,ctx:this.ctx,hue:s,friction:d,gravity:x,flickering:o(0,100)<=h,lineWidth:p(a.explosion.min,a.explosion.max),explosionLength:u(r),brightness:l,decay:m}))}drawExplosion(){let t=this.explosions.length;for(;t--;)this.explosions[t].draw(),this.explosions[t].update(()=>{this.explosions.splice(t,1)})}}c.Fireworks=y,c.default=y,Object.defineProperties(c,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}})});
+
 /* Functions                                        
 --------------------------------------------------------*/
 function popupClose(id) {
@@ -5186,6 +5329,481 @@ function goTo(line, t) {
     );
 }
 
+//wait for final event
+const waitForFinalEvent = (function () {
+    //unique id
+    const uniqueID = function () {
+        return "_" + Math.random().toString(36).substr(2, 9);
+    };
+
+    const timers = {};
+    return function (callback, ms, uniqueId) {
+        if (!uniqueId) {
+            uniqueId = "Don't call this twice without a uniqueId";
+        }
+        if (timers[uniqueId]) {
+            clearTimeout(timers[uniqueId]);
+        }
+        timers[uniqueId] = setTimeout(callback, ms);
+    };
+})();
+
+//Roulette Игра
+var roulettePlay = false;
+const skins = [
+    {
+        _id: 1,
+        img: "img/content/t1.png",
+        title: "Five-SeveN",
+        stitle: "Scrawl",
+        price: "276.38",
+        rarity: 1,
+    },
+    {
+        _id: 2,
+        img: "img/content/t2.png",
+        title: "Five-SeveN",
+        stitle: "Scrawl",
+        price: "276.38",
+        rarity: 2,
+    },
+    {
+        _id: 3,
+        img: "img/content/t3.png",
+        title: "Five-SeveN",
+        stitle: "Scrawl",
+        price: "276.38",
+        rarity: 3,
+    },
+    {
+        _id: 4,
+        img: "img/content/t4.png",
+        title: "Five-SeveN",
+        stitle: "Scrawl",
+        price: "276.38",
+        rarity: 4,
+    },
+    {
+        _id: 5,
+        img: "img/content/t5.png",
+        title: "Five-SeveN",
+        stitle: "Scrawl",
+        price: "276.38",
+        rarity: 5,
+    },
+    {
+        _id: 6,
+        img: "img/content/t6.png",
+        title: "Five-SeveN",
+        stitle: "Scrawl",
+        price: "276.38",
+        rarity: 6,
+    },
+    {
+        _id: 7,
+        img: "img/content/t7.png",
+        title: "Five-SeveN",
+        stitle: "Scrawl",
+        price: "276.38",
+        rarity: 7,
+    },
+    {
+        _id: 8,
+        img: "img/content/t8.png",
+        title: "Five-SeveN",
+        stitle: "Scrawl",
+        price: "276.38",
+        rarity: 8,
+    },
+];
+function rouletteBegin(winId) {
+    roulettePlay = true;
+    let caseCount = 0;
+    let caseBlocks = "";
+
+    const $rouletteWrap = $(".roulette");
+    const $rouletteLine = $(".roulette-line");
+    const $rouletteItem = $(".roulette-line .roulette-line__item");
+    const $rouletteItemWin = $('.roulette-line .roulette-line__item[data-id="' + winId + '"]');
+
+    $rouletteWrap.addClass("double-roulette--begin");
+    $rouletteLine.css("margin-left", 0);
+    $rouletteLine.css("transition", "none");
+    $rouletteItem.removeClass("r-win");
+
+    if ($rouletteItemWin.length === 1) {
+        $.each($rouletteItem, function (key, val) {
+            let caseId = $(val).data("id");
+            let nclass = $(val).attr("class");
+            caseBlocks += '<div class="' + nclass + '" data-id="' + caseId + '">' + $(val).html() + " </div>";
+            caseCount++;
+        });
+
+        for (var i = 0; i <= parseInt(11000 / (caseCount * 50)); i++) {
+            $rouletteLine.append(caseBlocks);
+        }
+    }
+
+    const winCase = document.querySelectorAll('.roulette-line > .roulette-line__item[data-id="' + winId + '"]');
+    const winCasePosition = $(winCase[winCase.length - 2]).position();
+    const iMargin = parseInt($rouletteItem.css("marginLeft")) + parseInt($rouletteItem.css("marginRight"));
+    const start_r = winCasePosition.left - $(".roulette").width() / 2 + ($rouletteItem.width() + iMargin) / 2;
+
+    //roulette start
+    $rouletteLine.animate(
+        {
+            marginLeft: "-=" + start_r + "px",
+        },
+        {
+            duration: 7275,
+            //easing: "easeInOutQuad",
+            progress: function (a, p, c) {
+                // roulette on resize
+                $(window).resize(function () {
+                    if (roulettePlay === true) {
+                        waitForFinalEvent(
+                            function () {
+                                $rouletteLine.stop();
+                                rouletteBegin(winId);
+                            },
+                            200,
+                            "some unique string doubleRoulettePlay"
+                        );
+                    }
+                });
+            },
+            complete: function () {
+                $(winCase[winCase.length - 2]).addClass("r-win");
+                $rouletteLine.css("transition", ".5s");
+                roulettePlay = false;
+                rouletteWin(winId);
+            },
+        }
+    ); // end animate
+}
+
+function rouletteStart() {
+    const roulette = $(".roulette");
+    const rouletteHeight = roulette.height();
+
+    const items = skins.map((obj) => {
+        return `<div class="roulette-line__item" data-id="${obj._id}">
+                        <div class="thing-item thing-item--${obj.rarity}">
+                            <div class="thing-item__skin">
+                                <img src="${obj.img}" alt="" />
+                            </div>
+                            <a href="#" class="thing-item__title">                            
+                                <span>${obj.title}</span><span class="n">${obj.stitle}</span>
+                            </a>
+                            <div class="thing-item__price">
+                                <span>${obj.price}</span> <b>₽</b>
+                            </div>
+                        </div>
+                    </div>`;
+    });
+
+    roulette.addClass("roulette--game").css("min-height", `${rouletteHeight}px`);
+    roulette.html("").append('<div class="roulette-wp"/>');
+    roulette.find(".roulette-wp").append('<div class="roulette-line"/>');
+    roulette.find(".roulette-line").html(items.join(""));
+
+    let winId = Math.ceil(Math.random() * 7 + 1);
+    rouletteBegin(winId);
+}
+
+function rouletteWin(winId) {
+    winId = winId ? winId : Math.ceil(Math.random() * 7 + 1);
+    const winObj = skins.find((el) => el._id == winId);
+
+    $(".roulette").html(
+        `<div class="roulette-win">
+            <div class="roulette-win__title">Поздравляем!</div>
+            <div class="roulette-win__skin roulette-win__skin--r${winObj.rarity}">
+                <div class="roulette-win__img">
+                    <img src="${winObj.img}" alt="" />
+                </div>
+                <div class="roulette-win__info">
+                    <span>${winObj.title} | ${winObj.stitle}</span>
+                    <p>${winObj.price} <b>₽</b></p>
+                </div>
+            </div>
+            <div class="roulette-win__btns">
+                <button type="button" class="btn btn--1 js-replay">
+                    <svg>
+                        <use xlink:href="#si-replay"></use>
+                    </svg>
+                    <span>Повторить</span>
+                </button>
+                <button type="button" class="btn btn--2 js-rbuy">Продать</button>
+            </div>
+        </div>`
+    );
+
+    $(".roulette").on("click", ".js-replay", rouletteStart);
+    $(".roulette").on("click", ".js-rbuy", function () {
+        popupOpen("#popup-buy");
+    });
+
+    const salyutContainer = document.querySelector(".roulette");
+    const salyut = new Fireworks.default(salyutContainer);
+    salyut.start();
+
+    setTimeout(function () {
+        salyut.stop();
+        salyut.clear();
+    }, 5000);
+}
+
+//Timer
+function xtimer(id, deadline, cb) {
+    // Елси передано число, создаем дату завершения
+    deadline = Number.isInteger(deadline) ? new Date(Date.parse(new Date()) + deadline) : deadline;
+
+    function addZero(num) {
+        if (num <= 9) {
+            return "0" + num;
+        } else {
+            return num;
+        }
+    }
+
+    function timeRemaining(endtime) {
+        var t = Date.parse(endtime) - Date.parse(new Date()),
+            seconds = Math.floor((t / 1000) % 60),
+            minutes = Math.floor((t / 1000 / 60) % 60),
+            hours = Math.floor((t / (1000 * 60 * 60)) % 24),
+            hours = Math.floor(t / (1000 * 60 * 60)),
+            days = Math.floor(t / (1000 * 60 * 60 * 24));
+
+        return {
+            total: t,
+            days: days,
+            hours: hours,
+            minutes: minutes,
+            seconds: seconds,
+        };
+    }
+
+    function setClock(selector, endtime) {
+        var timer = document.querySelector(selector),
+            days = timer.querySelector("[data-days]"),
+            hours = timer.querySelector("[data-hours]"),
+            minutes = timer.querySelector("[data-minutes]"),
+            seconds = timer.querySelector("[data-seconds]"),
+            timerInterval = setInterval(updateClock, 1000);
+
+        updateClock();
+
+        function updateClock() {
+            var t = timeRemaining(endtime);
+
+            if (days) {
+                days.textContent = addZero(t.days);
+            }
+            if (hours) {
+                hours.textContent = addZero(t.hours);
+            }
+            if (minutes) {
+                minutes.textContent = addZero(t.minutes);
+            }
+            if (seconds) {
+                seconds.textContent = addZero(t.seconds);
+            }
+
+            if (t.total <= 0) {
+                if (days) {
+                    days.textContent = "00";
+                }
+                if (hours) {
+                    hours.textContent = "00";
+                }
+                if (minutes) {
+                    minutes.textContent = "00";
+                }
+                if (seconds) {
+                    seconds.textContent = "00";
+                }
+
+                clearInterval(timerInterval);
+
+                cb();
+            }
+        }
+    }
+
+    setClock(id, deadline);
+}
+
+/*--Bonus wheel--*/
+(function () {
+    const wheel = document.querySelector(".wheel");
+
+    let timer = 7000;
+    let isRotating = false;
+    let currentRotate = 0;
+
+    const gifts = [
+        {
+            img: "img/bonus/big-free-case--wh.png",
+            bigImg: "img/bonus/big-free-case.png",
+            percent: 30 / 100,
+        },
+        {
+            img: "img/bonus/bonus-10--wh.png",
+            bigImg: "img/bonus/bonus-10.png",
+            percent: 20 / 100,
+        },
+        {
+            img: "img/bonus/bonus-15--wh.png",
+            bigImg: "img/bonus/bonus-15.png",
+            percent: 20 / 100,
+        },
+        {
+            img: "img/bonus/bonus-35--wh.png",
+            bigImg: "img/bonus/bonus-35.png",
+            percent: 25 / 100,
+        },
+        {
+            img: "img/bonus/bonus-50--wh.png",
+            bigImg: "img/bonus/bonus-50.png",
+            percent: 20 / 100,
+        },
+        {
+            img: "img/bonus/bonus-2000--wh.png",
+            bigImg: "img/bonus/bonus-2000.png",
+            percent: 20 / 100,
+        },
+        {
+            img: "img/bonus/discount-50--wh.png",
+            bigImg: "img/bonus/discount-50.png",
+            percent: 35 / 100,
+        },
+        {
+            img: "img/bonus/free-case--wh.png",
+            bigImg: "img/bonus/free-case.png",
+            percent: 20 / 100,
+        },
+        {
+            img: "img/bonus/free-case1--wh.png",
+            bigImg: "img/bonus/free-case1.png",
+            percent: 20 / 100,
+        },
+        {
+            img: "img/bonus/free-case3--wh.png",
+            bigImg: "img/bonus/free-case3.png",
+            percent: 45 / 100,
+        },
+        {
+            img: "img/bonus/free-spin1--wh.png",
+            bigImg: "img/bonus/free-spin1.png",
+            percent: 20 / 100,
+        },
+        {
+            img: "img/bonus/free-spin2--wh.png",
+            bigImg: "img/bonus/free-spin2.png",
+            percent: 25 / 100,
+        },
+        {
+            img: "img/bonus/free-spin3--wh.png",
+            bigImg: "img/bonus/free-spin3.png",
+            percent: 20 / 100,
+        },
+        {
+            img: "img/bonus/power-free-skin--wh.png",
+            bigImg: "img/bonus/power-free-skin.png",
+            percent: 20 / 100,
+        },
+        {
+            img: "img/bonus/promo-120r--wh.png",
+            bigImg: "img/bonus/promo-120r.png",
+            percent: 15 / 100,
+        },
+        {
+            img: "img/bonus/promo-200r--wh.png",
+            bigImg: "img/bonus/promo-200r.png",
+            percent: 70 / 100,
+        },
+        {
+            img: "img/bonus/promocode-30--wh.png",
+            bigImg: "img/bonus/promocode-30.png",
+            percent: 50 / 100,
+        },
+        {
+            img: "img/bonus/promocode-40--wh.png",
+            bigImg: "img/bonus/promocode-40.png",
+            percent: 15 / 100,
+        },
+        {
+            img: "img/bonus/promocode-50--wh.png",
+            bigImg: "img/bonus/promocode-50.png",
+            percent: 20 / 100,
+        },
+    ];
+
+    const size = gifts.length;
+    const rotate = 360 / size;
+    const skewY = 90 - rotate;
+
+    const renderItem = () => {
+        gifts.forEach((item, index) => {
+            const gift = document.createElement("li");
+
+            gift.style.transform = `
+                rotate(${rotate * index}deg)
+                skewY(-${skewY}deg)
+            `;
+
+            gift.innerHTML = `
+                <p class="wheel-item" style="transform: skewY(${skewY}deg) rotate(${rotate / 2}deg)">
+                    <img src="${item.img}" alt="" />
+                    
+                </p>`;
+
+            wheel.appendChild(gift);
+        });
+    };
+
+    const rotateWhell = (currentRotate, index) => {
+        wheel.style.transform = `rotate(${currentRotate - index * rotate - rotate / 2}deg)`;
+    };
+
+    const getGift = (winPercent) => {
+        let currentPercent = 0;
+        let list = [];
+
+        gifts.forEach((item, index) => {
+            currentPercent += item.percent;
+            winPercent <= currentPercent && list.push({ ...item, index });
+        });
+
+        return list[0];
+    };
+
+    const showGift = (obj) => {
+        setTimeout(() => {
+            isRotating = false;
+            $(".js-pwin-img").attr("src", `${obj.bigImg}`);
+            popupOpen("#popup-win");
+            console.log(obj);
+        }, timer);
+    };
+
+    const start = () => {
+        const winPercent = Math.random();
+        const gift = getGift(winPercent);
+
+        currentRotate += 360 * 10;
+
+        rotateWhell(currentRotate, gift.index);
+        showGift(gift);
+    };
+
+    renderItem();
+
+    $(".bonus-wheel__btn").on("click", start);
+    //start();
+})();
+
 /* Onload DOM                                        
 --------------------------------------------------------*/
 $(function () {
@@ -5217,6 +5835,23 @@ $(function () {
         $(".js-pay-img").attr("src", imgSrc);
     });
 
+    //Favorite
+    $(".btn-favorite").on("click", function () {
+        $(this).toggleClass("_checked");
+        if ($(this).hasClass("_checked")) {
+            $(this).children("span").text("Избранное");
+        } else {
+            $(this).children("span").text("Добавить в избранное");
+        }
+    });
+
+    // set timer
+    if ($(".ribox-timer").length) {
+        xtimer(".ribox-timer", 10 * 3600 * 1000, function () {
+            console.log("End ribox-timer");
+        });
+    }
+
     //Slider
     const caseSlider = new Swiper(".js-case-carousel", {
         slidesPerView: "auto",
@@ -5231,11 +5866,6 @@ $(function () {
                 loop: false,
             },
         },
-        // autoplay: {
-        //     delay: 2500,
-        //     disableOnInteraction: false,
-        //     reverseDirection: true,
-        // },
     });
 
     const kSlider = new Swiper(".js-kslider", {
