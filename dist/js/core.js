@@ -5798,10 +5798,11 @@ function xtimer(id, deadline, cb) {
         showGift(gift);
     };
 
-    renderItem();
+    if (wheel) {
+        renderItem();
+    }
 
     $(".bonus-wheel__btn").on("click", start);
-    //start();
 })();
 
 /* Onload DOM                                        
