@@ -20,7 +20,7 @@
         <link rel="icon" href="favicon.svg" />
 
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="css/style.min.css?v=0.7" />
+        <link rel="stylesheet" href="css/style.min.css?v=0.8" />
     </head>
     <body>
         <div class="wrapper">
@@ -209,33 +209,33 @@
                             <div class="roulette-box__options">
                                 <div class="roulette-options">
                                     <label class="roulette-options__item">
-                                        <input type="radio" class="inp-hide" checked name="roulette_opt" />
+                                        <input type="radio" class="inp-hide" value="1" checked name="roulette_opt" />
                                         <span>х1</span>
                                     </label>
                                     <label class="roulette-options__item">
-                                        <input type="radio" class="inp-hide" name="roulette_opt" />
+                                        <input type="radio" class="inp-hide" value="2" name="roulette_opt" />
                                         <span>х2</span>
                                     </label>
                                     <label class="roulette-options__item">
-                                        <input type="radio" class="inp-hide" name="roulette_opt" />
+                                        <input type="radio" class="inp-hide" value="3" name="roulette_opt" />
                                         <span>х3</span>
                                     </label>
                                     <label class="roulette-options__item">
-                                        <input type="radio" class="inp-hide" name="roulette_opt" />
+                                        <input type="radio" class="inp-hide" value="4" name="roulette_opt" />
                                         <span>х4</span>
                                     </label>
                                     <label class="roulette-options__item">
-                                        <input type="radio" class="inp-hide" name="roulette_opt" />
+                                        <input type="radio" class="inp-hide" value="5" name="roulette_opt" />
                                         <span>х5</span>
                                     </label>
-                                    <label class="roulette-options__item">
+                                    <!-- <label class="roulette-options__item">
                                         <input type="radio" class="inp-hide" name="roulette_opt" />
                                         <span>х10</span>
-                                    </label>
+                                    </label> -->
                                 </div>
 
                                 <div class="roulette-btns">
-                                    <button type="button" onclick="rouletteStart()" class="btn btn--1">Открыть за 7₽</button>
+                                    <button type="button" class="btn btn--1 js-roulette-start">Открыть за 7₽</button>
                                     <button type="button" onclick="rouletteWin(0)" class="btn btn--2">Открыть быстро</button>
                                 </div>
                             </div>
@@ -506,7 +506,7 @@
                     <div class="roulette-things">
                         <div class="thing">
                             <div class="thing-item thing-item--r1">
-                                <div class="thing-item__info xs-noty" data-title="long info info">
+                                <div class="thing-item__info xs-noty" data-title="10%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -525,7 +525,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r2">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -543,7 +543,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r3">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -561,7 +561,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r4">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -579,7 +579,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r5">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -597,7 +597,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r6">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -615,7 +615,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r7">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -633,7 +633,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r8">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -651,7 +651,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r2">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -669,7 +669,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r3">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -687,7 +687,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r4">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -705,7 +705,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r5">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -723,7 +723,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r6">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -741,7 +741,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r7">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -759,7 +759,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r8">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -777,7 +777,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r2">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -795,7 +795,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r3">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -813,7 +813,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r4">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -831,7 +831,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r5">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -849,7 +849,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r6">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -867,7 +867,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r7">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -885,7 +885,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r8">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -903,7 +903,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r2">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -921,7 +921,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r3">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -939,7 +939,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r4">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -957,7 +957,7 @@
 
                         <div class="thing">
                             <div class="thing-item thing-item--r6">
-                                <div class="thing-item__info xs-noty" data-title="info">
+                                <div class="thing-item__info xs-noty" data-title="0.3%">
                                     <svg>
                                         <use xlink:href="#si-info"></use>
                                     </svg>
@@ -1511,6 +1511,6 @@
         <!-- ./ SVG SPRITE END  -->
 
         <script src="js/libs/jquery.min.js"></script>
-        <script src="js/core.min.js?v=0.7"></script>
+        <script src="js/core.min.js?v=0.8"></script>
     </body>
 </html>

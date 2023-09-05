@@ -5234,15 +5234,48 @@
     });
 })(jQuery);
 
-/**
- * name: fireworks-js
- * version: 2.10.7
- * author: Vitalij Ryndin (https://crashmax.ru)
- * homepage: https://fireworks.js.org
- * license MIT
+/*!
+ * fireworks-js 1.4.1 by Vitalij Ryndin (https://crashmax.ru)
+ * https://fireworks.js.org
+ * License MIT
  */
-/* prettier-ignore */
-(function(c,u){typeof exports=="object"&&typeof module<"u"?u(exports):typeof define=="function"&&define.amd?define(["exports"],u):(c=typeof globalThis<"u"?globalThis:c||self,u(c.Fireworks={}))})(this,function(c){"use strict";function u(e){return Math.abs(Math.floor(e))}function p(e,t){return Math.random()*(t-e)+e}function o(e,t){return Math.floor(p(e,t+1))}function g(e,t,i,s){const n=Math.pow;return Math.sqrt(n(e-i,2)+n(t-s,2))}function f(e,t,i=1){if(e>360||e<0)throw new Error(`Expected hue 0-360 range, got \`${e}\``);if(t>100||t<0)throw new Error(`Expected lightness 0-100 range, got \`${t}\``);if(i>1||i<0)throw new Error(`Expected alpha 0-1 range, got \`${i}\``);return`hsla(${e}, 100%, ${t}%, ${i})`}const v=e=>{if(typeof e=="object"&&e!==null){if(typeof Object.getPrototypeOf=="function"){const t=Object.getPrototypeOf(e);return t===Object.prototype||t===null}return Object.prototype.toString.call(e)==="[object Object]"}return!1},b=["__proto__","constructor","prototype"],w=(...e)=>e.reduce((t,i)=>(Object.keys(i).forEach(s=>{b.includes(s)||(Array.isArray(t[s])&&Array.isArray(i[s])?t[s]=i[s]:v(t[s])&&v(i[s])?t[s]=w(t[s],i[s]):t[s]=i[s])}),t),{});function S(e,t){let i;return(...s)=>{i&&clearTimeout(i),i=setTimeout(()=>e(...s),t)}}class O{x;y;ctx;hue;friction;gravity;flickering;lineWidth;explosionLength;angle;speed;brightness;coordinates=[];decay;alpha=1;constructor({x:t,y:i,ctx:s,hue:n,decay:h,gravity:a,friction:r,brightness:l,flickering:d,lineWidth:x,explosionLength:m}){for(this.x=t,this.y=i,this.ctx=s,this.hue=n,this.gravity=a,this.friction=r,this.flickering=d,this.lineWidth=x,this.explosionLength=m,this.angle=p(0,Math.PI*2),this.speed=o(1,10),this.brightness=o(l.min,l.max),this.decay=p(h.min,h.max);this.explosionLength--;)this.coordinates.push([t,i])}update(t){this.coordinates.pop(),this.coordinates.unshift([this.x,this.y]),this.speed*=this.friction,this.x+=Math.cos(this.angle)*this.speed,this.y+=Math.sin(this.angle)*this.speed+this.gravity,this.alpha-=this.decay,this.alpha<=this.decay&&t()}draw(){const t=this.coordinates.length-1;this.ctx.beginPath(),this.ctx.lineWidth=this.lineWidth,this.ctx.fillStyle=f(this.hue,this.brightness,this.alpha),this.ctx.moveTo(this.coordinates[t][0],this.coordinates[t][1]),this.ctx.lineTo(this.x,this.y),this.ctx.strokeStyle=f(this.hue,this.flickering?p(0,this.brightness):this.brightness,this.alpha),this.ctx.stroke()}}class E{constructor(t,i){this.options=t,this.canvas=i,this.pointerDown=this.pointerDown.bind(this),this.pointerUp=this.pointerUp.bind(this),this.pointerMove=this.pointerMove.bind(this)}active=!1;x;y;get mouseOptions(){return this.options.mouse}mount(){this.canvas.addEventListener("pointerdown",this.pointerDown),this.canvas.addEventListener("pointerup",this.pointerUp),this.canvas.addEventListener("pointermove",this.pointerMove)}unmount(){this.canvas.removeEventListener("pointerdown",this.pointerDown),this.canvas.removeEventListener("pointerup",this.pointerUp),this.canvas.removeEventListener("pointermove",this.pointerMove)}usePointer(t,i){const{click:s,move:n}=this.mouseOptions;(s||n)&&(this.x=t.pageX-this.canvas.offsetLeft,this.y=t.pageY-this.canvas.offsetTop,this.active=i)}pointerDown(t){this.usePointer(t,this.mouseOptions.click)}pointerUp(t){this.usePointer(t,!1)}pointerMove(t){this.usePointer(t,this.active)}}class M{hue;rocketsPoint;opacity;acceleration;friction;gravity;particles;explosion;mouse;boundaries;sound;delay;brightness;decay;flickering;intensity;traceLength;traceSpeed;lineWidth;lineStyle;autoresize;constructor(){this.autoresize=!0,this.lineStyle="round",this.flickering=50,this.traceLength=3,this.traceSpeed=10,this.intensity=30,this.explosion=5,this.gravity=1.5,this.opacity=.5,this.particles=50,this.friction=.95,this.acceleration=1.05,this.hue={min:0,max:360},this.rocketsPoint={min:50,max:50},this.lineWidth={explosion:{min:1,max:3},trace:{min:1,max:2}},this.mouse={click:!1,move:!1,max:1},this.delay={min:30,max:60},this.brightness={min:50,max:80},this.decay={min:.015,max:.03},this.sound={enabled:!1,files:["explosion0.mp3","explosion1.mp3","explosion2.mp3"],volume:{min:4,max:8}},this.boundaries={debug:!1,height:0,width:0,x:50,y:50}}update(t){Object.assign(this,w(this,t))}}class z{constructor(t,i){this.options=t,this.render=i}tick=0;rafId=0;fps=60;tolerance=.1;now;mount(){this.now=performance.now();const t=1e3/this.fps,i=s=>{this.rafId=requestAnimationFrame(i);const n=s-this.now;n>=t-this.tolerance&&(this.render(),this.now=s-n%t,this.tick+=n*(this.options.intensity*Math.PI)/1e3)};this.rafId=requestAnimationFrame(i)}unmount(){cancelAnimationFrame(this.rafId)}}class L{constructor(t,i,s){this.options=t,this.updateSize=i,this.container=s}resizer;mount(){if(!this.resizer){const t=S(()=>this.updateSize(),100);this.resizer=new ResizeObserver(t)}this.options.autoresize&&this.resizer.observe(this.container)}unmount(){this.resizer&&this.resizer.unobserve(this.container)}}class T{constructor(t){this.options=t,this.init()}buffers=[];audioContext;onInit=!1;get isEnabled(){return this.options.sound.enabled}get soundOptions(){return this.options.sound}init(){!this.onInit&&this.isEnabled&&(this.onInit=!0,this.audioContext=new(window.AudioContext||window.webkitAudioContext),this.loadSounds())}async loadSounds(){for(const t of this.soundOptions.files){const i=await(await fetch(t)).arrayBuffer();this.audioContext.decodeAudioData(i).then(s=>{this.buffers.push(s)}).catch(s=>{throw s})}}play(){if(this.isEnabled&&this.buffers.length){const t=this.audioContext.createBufferSource(),i=this.buffers[o(0,this.buffers.length-1)],s=this.audioContext.createGain();t.buffer=i,s.gain.value=p(this.soundOptions.volume.min/100,this.soundOptions.volume.max/100),s.connect(this.audioContext.destination),t.connect(s),t.start(0)}else this.init()}}class C{x;y;sx;sy;dx;dy;ctx;hue;speed;acceleration;traceLength;totalDistance;angle;brightness;coordinates=[];currentDistance=0;constructor({x:t,y:i,dx:s,dy:n,ctx:h,hue:a,speed:r,traceLength:l,acceleration:d}){for(this.x=t,this.y=i,this.sx=t,this.sy=i,this.dx=s,this.dy=n,this.ctx=h,this.hue=a,this.speed=r,this.traceLength=l,this.acceleration=d,this.totalDistance=g(t,i,s,n),this.angle=Math.atan2(n-i,s-t),this.brightness=o(50,70);this.traceLength--;)this.coordinates.push([t,i])}update(t){this.coordinates.pop(),this.coordinates.unshift([this.x,this.y]),this.speed*=this.acceleration;const i=Math.cos(this.angle)*this.speed,s=Math.sin(this.angle)*this.speed;this.currentDistance=g(this.sx,this.sy,this.x+i,this.y+s),this.currentDistance>=this.totalDistance?t(this.dx,this.dy,this.hue):(this.x+=i,this.y+=s)}draw(){const t=this.coordinates.length-1;this.ctx.beginPath(),this.ctx.moveTo(this.coordinates[t][0],this.coordinates[t][1]),this.ctx.lineTo(this.x,this.y),this.ctx.strokeStyle=f(this.hue,this.brightness),this.ctx.stroke()}}class y{target;container;canvas;ctx;width;height;traces=[];explosions=[];waitStopRaf;running=!1;opts;sound;resize;mouse;raf;constructor(t,i={}){this.target=t,this.container=t,this.opts=new M,this.createCanvas(this.target),this.updateOptions(i),this.sound=new T(this.opts),this.resize=new L(this.opts,this.updateSize.bind(this),this.container),this.mouse=new E(this.opts,this.canvas),this.raf=new z(this.opts,this.render.bind(this))}get isRunning(){return this.running}get version(){return"2.10.7"}get currentOptions(){return this.opts}start(){this.running||(this.canvas.isConnected||this.createCanvas(this.target),this.running=!0,this.resize.mount(),this.mouse.mount(),this.raf.mount())}stop(t=!1){!this.running||(this.running=!1,this.resize.unmount(),this.mouse.unmount(),this.raf.unmount(),this.clear(),t&&this.canvas.remove())}async waitStop(t){if(!!this.running)return new Promise(i=>{this.waitStopRaf=()=>{!this.waitStopRaf||(requestAnimationFrame(this.waitStopRaf),!this.traces.length&&!this.explosions.length&&(this.waitStopRaf=null,this.stop(t),i()))},this.waitStopRaf()})}pause(){this.running=!this.running,this.running?this.raf.mount():this.raf.unmount()}clear(){!this.ctx||(this.traces=[],this.explosions=[],this.ctx.clearRect(0,0,this.width,this.height))}launch(t=1){for(let i=0;i<t;i++)this.createTrace();this.waitStopRaf||(this.start(),this.waitStop())}updateOptions(t){this.opts.update(t)}updateSize({width:t=this.container.clientWidth,height:i=this.container.clientHeight}={}){this.width=t,this.height=i,this.canvas.width=t,this.canvas.height=i,this.updateBoundaries({...this.opts.boundaries,width:t,height:i})}updateBoundaries(t){this.updateOptions({boundaries:t})}createCanvas(t){t instanceof HTMLCanvasElement?(t.isConnected||document.body.append(t),this.canvas=t):(this.canvas=document.createElement("canvas"),this.container.append(this.canvas)),this.ctx=this.canvas.getContext("2d"),this.updateSize()}render(){if(!this.ctx||!this.running)return;const{opacity:t,lineStyle:i,lineWidth:s}=this.opts;this.ctx.globalCompositeOperation="destination-out",this.ctx.fillStyle=`rgba(0, 0, 0, ${t})`,this.ctx.fillRect(0,0,this.width,this.height),this.ctx.globalCompositeOperation="lighter",this.ctx.lineCap=i,this.ctx.lineJoin="round",this.ctx.lineWidth=p(s.trace.min,s.trace.max),this.initTrace(),this.drawTrace(),this.drawExplosion()}createTrace(){const{hue:t,rocketsPoint:i,boundaries:s,traceLength:n,traceSpeed:h,acceleration:a,mouse:r}=this.opts;this.traces.push(new C({x:this.width*o(i.min,i.max)/100,y:this.height,dx:this.mouse.x&&r.move||this.mouse.active?this.mouse.x:o(s.x,s.width-s.x*2),dy:this.mouse.y&&r.move||this.mouse.active?this.mouse.y:o(s.y,s.height*.5),ctx:this.ctx,hue:o(t.min,t.max),speed:h,acceleration:a,traceLength:u(n)}))}initTrace(){if(this.waitStopRaf)return;const{delay:t,mouse:i}=this.opts;(this.raf.tick>o(t.min,t.max)||this.mouse.active&&i.max>this.traces.length)&&(this.createTrace(),this.raf.tick=0)}drawTrace(){let t=this.traces.length;for(;t--;)this.traces[t].draw(),this.traces[t].update((i,s,n)=>{this.initExplosion(i,s,n),this.sound.play(),this.traces.splice(t,1)})}initExplosion(t,i,s){const{particles:n,flickering:h,lineWidth:a,explosion:r,brightness:l,friction:d,gravity:x,decay:m}=this.opts;let P=u(n);for(;P--;)this.explosions.push(new O({x:t,y:i,ctx:this.ctx,hue:s,friction:d,gravity:x,flickering:o(0,100)<=h,lineWidth:p(a.explosion.min,a.explosion.max),explosionLength:u(r),brightness:l,decay:m}))}drawExplosion(){let t=this.explosions.length;for(;t--;)this.explosions[t].draw(),this.explosions[t].update(()=>{this.explosions.splice(t,1)})}}c.Fireworks=y,c.default=y,Object.defineProperties(c,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}})});
+/*prettier-ignore*/
+!function(t,i){if("object"==typeof exports&&"object"==typeof module)module.exports=i();else if("function"==typeof define&&define.amd)define([],i);else{var s=i();for(var e in s)("object"==typeof exports?exports:t)[e]=s[e]}}(this,(function(){return(()=>{"use strict";var t={511:(t,i,s)=>{Object.defineProperty(i,"__esModule",{value:!0}),i.Explosion=void 0;var e=s(909);i.Explosion=class{constructor(t){var{x:i,y:s,ctx:n,hue:h,gravity:o,friction:a,brightness:r,flickering:c,lineWidth:_,explosionLength:d}=t;for(this._coordinates=[],this._alpha=1,this._x=i,this._y=s,this._ctx=n,this._gravity=o,this._friction=a,this._flickering=c,this._lineWidth=_,this._explosionLength=d;this._explosionLength--;)this._coordinates.push([i,s]);this._angle=(0,e.randomFloat)(0,2*Math.PI),this._speed=(0,e.randomInt)(1,10),this._hue=(0,e.randomInt)(h-20,h+20),this._brightness=(0,e.randomInt)(r.min,r.max),this._decay=(0,e.randomFloat)(r.decay.min,r.decay.max)}update(t){this._coordinates.pop(),this._coordinates.unshift([this._x,this._y]),this._speed*=this._friction,this._x+=Math.cos(this._angle)*this._speed,this._y+=Math.sin(this._angle)*this._speed+this._gravity,this._alpha-=this._decay,this._alpha<=this._decay&&t()}draw(){var t=this._coordinates.length-1;this._ctx.beginPath(),this._ctx.lineWidth=this._lineWidth,this._ctx.fillStyle=(0,e.hsla)(this._hue,this._brightness,this._alpha),this._ctx.moveTo(this._coordinates[t][0],this._coordinates[t][1]),this._ctx.lineTo(this._x,this._y),this._ctx.strokeStyle=(0,e.hsla)(this._hue,this._flickering?(0,e.randomFloat)(0,this._brightness):this._brightness,this._alpha),this._ctx.stroke()}}},909:(t,i)=>{Object.defineProperty(i,"__esModule",{value:!0}),i.hsla=i.getDistance=i.randomInt=i.randomFloat=void 0,i.randomFloat=function(t,i){return Math.random()*(i-t)+t},i.randomInt=function(t,i){return Math.floor(t+Math.random()*(i+1-t))},i.getDistance=function(t,i,s,e){var n=Math.pow;return Math.sqrt(n(t-s,2)+n(i-e,2))},i.hsla=function(t,i){var s=arguments.length>2&&void 0!==arguments[2]?arguments[2]:1;return"hsla(".concat(t,", 100%, ").concat(i,"%, ").concat(s,")")}},449:function(t,i,s){var e=this&&this.__awaiter||function(t,i,s,e){return new(s||(s=Promise))((function(n,h){function o(t){try{r(e.next(t))}catch(t){h(t)}}function a(t){try{r(e.throw(t))}catch(t){h(t)}}function r(t){var i;t.done?n(t.value):(i=t.value,i instanceof s?i:new s((function(t){t(i)}))).then(o,a)}r((e=e.apply(t,i||[])).next())}))};Object.defineProperty(i,"__esModule",{value:!0}),i.Sound=void 0;var n=s(909);i.Sound=class{constructor(t){this._buffer=[],this.onInit=!0,this.options=Object.assign({enabled:!1,files:["explosion0.mp3","explosion1.mp3","explosion2.mp3"],volume:{min:4,max:8}},t),this.init()}init(){this.onInit&&this.options.enabled&&(this.onInit=!1,this._audioContext=new(window.AudioContext||window.webkitAudioContext),this.load())}load(){return e(this,void 0,void 0,(function*(){for(var t of this.options.files){var i=yield(yield fetch(t)).arrayBuffer();this._audioContext.decodeAudioData(i).then((t=>{this._buffer.push(t)})).catch((t=>{throw t}))}}))}play(){if(this.options.enabled&&this._buffer.length){var t=this._audioContext.createBufferSource(),i=this._buffer[(0,n.randomInt)(0,this._buffer.length-1)],s=this._audioContext.createGain();t.buffer=i,s.gain.value=(0,n.randomFloat)(this.options.volume.min/100,this.options.volume.max/100),s.connect(this._audioContext.destination),t.connect(s),t.start(0)}else this.init()}}},668:(t,i,s)=>{Object.defineProperty(i,"__esModule",{value:!0}),i.Trace=void 0;var e=s(909);i.Trace=class{constructor(t){var{x:i,y:s,dx:n,dy:h,ctx:o,hue:a,speed:r,traceLength:c,acceleration:_}=t;for(this._coordinates=[],this._currentDistance=0,this._x=i,this._y=s,this._sx=i,this._sy=s,this._dx=n,this._dy=h,this._ctx=o,this._hue=a,this._speed=r,this._traceLength=c,this._acceleration=_,this._totalDistance=(0,e.getDistance)(i,s,n,h);this._traceLength--;)this._coordinates.push([i,s]);this._angle=Math.atan2(h-s,n-i),this._brightness=(0,e.randomInt)(50,70)}update(t){this._coordinates.pop(),this._coordinates.unshift([this._x,this._y]),this._speed*=this._acceleration;var i=Math.cos(this._angle)*this._speed,s=Math.sin(this._angle)*this._speed;this._currentDistance=(0,e.getDistance)(this._sx,this._sy,this._x+i,this._y+s),this._currentDistance>=this._totalDistance?t(this._dx,this._dy,this._hue):(this._x+=i,this._y+=s)}draw(){var t=this._coordinates.length-1;this._ctx.beginPath(),this._ctx.moveTo(this._coordinates[t][0],this._coordinates[t][1]),this._ctx.lineTo(this._x,this._y),this._ctx.strokeStyle=(0,e.hsla)(this._hue,this._brightness),this._ctx.stroke()}}}},i={};function s(e){var n=i[e];if(void 0!==n)return n.exports;var h=i[e]={exports:{}};return t[e].call(h.exports,h,h.exports,s),h.exports}var e={};return(()=>{var t=e;Object.defineProperty(t,"__esModule",{value:!0}),t.Fireworks=void 0;var i=s(668),n=s(449),h=s(511),o=s(909);t.Fireworks=class{constructor(t){var{autoresize:i=!0,boundaries:s,brightness:e,delay:h,hue:o,mouse:a,sound:r,rocketsPoint:c,lineWidth:_,lineStyle:d="round",flickering:l=50,trace:u=3,traceSpeed:m=10,intensity:p=30,explosion:x=5,gravity:v=1.5,opacity:g=.5,particles:f=50,friction:y=.95,acceleration:b=1.05}=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};this._tick=0,this._timestamp=performance.now(),this._version="1.4.1",this._running=!1,this._m=!1,t instanceof HTMLCanvasElement?(this._container=t,this._canvas=t):(this._container=t,this._canvas=document.createElement("canvas"),this._container.appendChild(this._canvas)),this._ctx=this._canvas.getContext("2d"),this._sound=new n.Sound(r),this.setSize(),this.setBoundaries(Object.assign({visible:!1,x:50,y:50},s)),this.autoresize=i,this.trace=u,this.explosion=x,this.gravity=v,this.opacity=g,this.particles=f,this.friction=y,this.acceleration=b,this.flickering=l,this.intensity=p,this.traceSpeed=m,this.lineStyle=d,this.hue=Object.assign({min:0,max:360},o),this.rocketsPoint=Object.assign({min:50,max:50},c),this.lineWidth=Object.assign({explosion:{min:1,max:3},trace:{min:1,max:2}},_),this.mouse=Object.assign({click:!1,move:!1,max:1},a),this.delay=Object.assign({min:15,max:30},h),this.brightness=Object.assign({min:50,max:80,decay:{min:.015,max:.03}},e),this.autoresize&&window.addEventListener("resize",(()=>this.windowResize())),this._canvas.addEventListener("mousedown",(t=>{this.mouseDown(t)})),this._canvas.addEventListener("mouseup",(t=>{this.mouseUp(t)})),this._canvas.addEventListener("mousemove",(t=>{this.mouseMove(t)}))}get isRunning(){return this._running}get version(){return this._version}start(){this._running||(this._running=!0,this.clear(),this.render())}stop(){this._running&&(this._running=!1,this.clear())}unmount(){window.removeEventListener("resize",this.windowResize),this._canvas.removeEventListener("mousedown",this.mouseDown),this._canvas.removeEventListener("mouseup",this.mouseUp),this._canvas.removeEventListener("mousemove",this.mouseMove)}pause(){this._running=!this._running,this._running&&this.render()}clear(){this._ctx&&(this._traces=[],this._explosions=[],this._ctx.clearRect(0,0,this._width,this._height))}setOptions(t){for(var[i,s]of Object.entries(t)){var e=Object.prototype.hasOwnProperty.call(this,i);if("function"==typeof this[i])throw new Error("You cannot change the methods of the class!");e&&("object"==typeof this[i]?Object.assign(this[i],s):this[i]=s),"sound"===i&&Object.assign(this._sound.options,s)}}setSize(){var{width:t=(this._container instanceof HTMLCanvasElement?this._canvas.width:this._container.clientWidth),height:i=(this._container instanceof HTMLCanvasElement?this._canvas.height:this._container.clientHeight)}=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};this._width=t,this._height=i,this._canvas.width=t,this._canvas.height=i,this.setBoundaries({width:t,height:i})}setBoundaries(t){this.boundaries=Object.assign(Object.assign({},this.boundaries),t)}useMouse(t,i){(this.mouse.click||this.mouse.move)&&(this._mx=t.pageX-this._canvas.offsetLeft,this._my=t.pageY-this._canvas.offsetTop,this._m=i)}windowResize(){this.setSize()}mouseDown(t){this.useMouse(t,this.mouse.click)}mouseUp(t){this.useMouse(t,!1)}mouseMove(t){this.useMouse(t,this._m)}render(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:this._timestamp;if(this._ctx&&this._running){requestAnimationFrame((t=>this.render(t))),this._ctx.globalCompositeOperation="destination-out",this._ctx.fillStyle="rgba(0, 0, 0, ".concat(this.opacity,")"),this._ctx.fillRect(0,0,this._width,this._height),this._ctx.globalCompositeOperation="lighter",this._ctx.lineCap=this.lineStyle,this._ctx.lineJoin="round",this.drawBoundaries(),this.initTrace(),this.drawTrace(),this.drawExplosion();var i=t-this._timestamp;this._timestamp=t,this._tick+=i*(this.intensity*Math.PI)/1e3}}drawBoundaries(){this.boundaries.visible&&(this._ctx.beginPath(),this._ctx.lineWidth=1,this._ctx.strokeStyle="red",this._ctx.rect(this.boundaries.x,this.boundaries.y,this.boundaries.width-2*this.boundaries.x,.5*this.boundaries.height),this._ctx.stroke())}initTrace(){this._ds=(0,o.randomInt)(this.delay.min,this.delay.max),(this._tick>this._ds||this._m&&this.mouse.max>this._traces.length)&&(this._traces.push(new i.Trace({x:this._width*(0,o.randomInt)(this.rocketsPoint.min,this.rocketsPoint.max)/100,y:this._height,dx:this._mx&&this.mouse.move||this._m?this._mx:(0,o.randomInt)(this.boundaries.x,this.boundaries.width-2*this.boundaries.x),dy:this._my&&this.mouse.move||this._m?this._my:(0,o.randomInt)(this.boundaries.y,.5*this.boundaries.height),ctx:this._ctx,hue:(0,o.randomInt)(this.hue.min,this.hue.max),speed:this.traceSpeed,acceleration:this.acceleration,traceLength:this.trace})),this._tick=0)}drawTrace(){var t=this._traces.length;for(this._ctx.lineWidth=(0,o.randomFloat)(this.lineWidth.trace.min,this.lineWidth.trace.max);t--;)this._traces[t].draw(),this._traces[t].update(((i,s,e)=>{this.initExplosion(i,s,e),this._sound.play(),this._traces.splice(t,1)}))}initExplosion(t,i,s){for(var e=this.particles;e--;)this._explosions.push(new h.Explosion({x:t,y:i,ctx:this._ctx,hue:s,friction:this.friction,gravity:this.gravity,flickering:(0,o.randomInt)(0,100)<=this.flickering,lineWidth:(0,o.randomFloat)(this.lineWidth.explosion.min,this.lineWidth.explosion.max),explosionLength:Math.round(this.explosion),brightness:this.brightness}))}drawExplosion(){for(var t=this._explosions.length;t--;)this._explosions[t].draw(),this._explosions[t].update((()=>{this._explosions.splice(t,1)}))}}})(),e})()}));
+
+$.fn.animateTransform = function (/* [start,] end [, duration] [, callback] */) {
+    var start = null,
+        end = null,
+        duration = 400,
+        callback = function () {};
+    for (var i = 0; i < arguments.length; i++) {
+        if (typeof arguments[i] == "string") {
+            if (!start) start = arguments[i];
+            else end = arguments[i];
+        } else if (typeof arguments[i] == "number") {
+            duration = arguments[i];
+        } else if (typeof arguments[i] == "function") {
+            callback = arguments[i];
+        }
+    }
+    if (start && !end) {
+        end = start;
+        start = null;
+    }
+    if (!end) return;
+    if (start) {
+        this.css("transform", start);
+    }
+    if (duration < 16) duration = 16;
+    var transitionB4 = this.css("transition");
+    this.css("transition", "transform " + duration + "ms");
+    this.css("transform", end);
+    var $el = this;
+    setTimeout(function () {
+        $el.css("transition", transitionB4 || "");
+        $el.css("transform", end);
+        callback();
+    }, duration);
+};
 
 /* Functions                                        
 --------------------------------------------------------*/
@@ -5426,9 +5459,9 @@ function rouletteBegin(winId) {
     const $rouletteItem = $(".roulette-line .roulette-line__item");
     const $rouletteItemWin = $('.roulette-line .roulette-line__item[data-id="' + winId + '"]');
 
-    $rouletteWrap.addClass("double-roulette--begin");
-    $rouletteLine.css("margin-left", 0);
-    $rouletteLine.css("transition", "none");
+    //$rouletteWrap.addClass("double-roulette--begin");
+    $rouletteLine.css("transform", "translateX(0)");
+    //$rouletteLine.css("transition", "none");
     $rouletteItem.removeClass("r-win");
 
     if ($rouletteItemWin.length === 1) {
@@ -5439,7 +5472,7 @@ function rouletteBegin(winId) {
             caseCount++;
         });
 
-        for (var i = 0; i <= parseInt(11000 / (caseCount * 50)); i++) {
+        for (var i = 0; i <= parseInt(11000 / (caseCount * 100)); i++) {
             $rouletteLine.append(caseBlocks);
         }
     }
@@ -5447,39 +5480,63 @@ function rouletteBegin(winId) {
     const winCase = document.querySelectorAll('.roulette-line > .roulette-line__item[data-id="' + winId + '"]');
     const winCasePosition = $(winCase[winCase.length - 2]).position();
     const iMargin = parseInt($rouletteItem.css("marginLeft")) + parseInt($rouletteItem.css("marginRight"));
-    const start_r = winCasePosition.left - $(".roulette").width() / 2 + ($rouletteItem.width() + iMargin) / 2;
+    const start_r = winCasePosition.left - $rouletteWrap.width() / 2 + ($rouletteItem.width() + iMargin) / 2;
 
     //roulette start
-    $rouletteLine.animate(
-        {
-            marginLeft: "-=" + start_r + "px",
-        },
-        {
-            duration: 7275,
-            //easing: "easeInOutQuad",
-            progress: function (a, p, c) {
-                // roulette on resize
-                $(window).resize(function () {
-                    if (roulettePlay === true) {
-                        waitForFinalEvent(
-                            function () {
-                                $rouletteLine.stop();
-                                rouletteBegin(winId);
-                            },
-                            200,
-                            "some unique string doubleRoulettePlay"
-                        );
-                    }
-                });
-            },
-            complete: function () {
-                $(winCase[winCase.length - 2]).addClass("r-win");
-                $rouletteLine.css("transition", ".5s");
-                roulettePlay = false;
-                rouletteWin(winId);
-            },
+    $rouletteLine.css("transform", `translateX(-${start_r}px)`);
+    $rouletteLine.on("transitionend", function () {
+        $(winCase[winCase.length - 2]).addClass("r-win");
+        roulettePlay = false;
+        rouletteWin(winId);
+        $(window).off("resize", wdResize);
+    });
+
+    //roulette on resize
+    $(window).on("resize", wdResize);
+    function wdResize() {
+        if (roulettePlay === true) {
+            waitForFinalEvent(
+                function () {
+                    console.log(roulettePlay);
+                    $rouletteLine.stop();
+                    rouletteBegin(winId);
+                },
+                200,
+                "some unique string roulettePlay"
+            );
         }
-    ); // end animate
+    }
+
+    // $rouletteLine.animate(
+    //     {
+    //         marginLeft: "-=" + start_r + "px",
+    //     },
+    //     {
+    //         duration: 7275,
+    //         //easing: "easeInOutQuad",
+    //         progress: function (a, p, c) {
+    //             // roulette on resize
+    //             $(window).resize(function () {
+    //                 if (roulettePlay === true) {
+    //                     waitForFinalEvent(
+    //                         function () {
+    //                             $rouletteLine.stop();
+    //                             rouletteBegin(winId);
+    //                         },
+    //                         200,
+    //                         "some unique string doubleRoulettePlay"
+    //                     );
+    //                 }
+    //             });
+    //         },
+    //         complete: function () {
+    //             $(winCase[winCase.length - 2]).addClass("r-win");
+    //             $rouletteLine.css("transition", ".5s");
+    //             roulettePlay = false;
+    //             rouletteWin(winId);
+    //         },
+    //     }
+    // ); // end animate
 }
 
 function rouletteStart() {
@@ -5508,50 +5565,55 @@ function rouletteStart() {
     roulette.find(".roulette-line").html(items.join(""));
 
     let winId = Math.ceil(Math.random() * 7 + 1);
-    rouletteBegin(winId);
+    setTimeout(function () {
+        rouletteBegin(winId);
+    }, 100);
 }
 
-function rouletteWin(winId) {
-    winId = winId ? winId : Math.ceil(Math.random() * 7 + 1);
-    const winObj = skins.find((el) => el._id == winId);
+function rouletteWin(winObjs) {
+    // winId = winId ? winId : Math.ceil(Math.random() * 7 + 1);
+    // const winObj = skins.find((el) => el._id == winId);
 
-    $(".roulette").html(
-        `<div class="roulette-win">
-            <div class="roulette-win__title">Поздравляем!</div>
-            <div class="roulette-win__skin roulette-win__skin--r${winObj.rarity}">
-                <div class="roulette-win__img">
-                    <img src="${winObj.img}" alt="" />
-                </div>
-                <div class="roulette-win__info">
-                    <span>${winObj.title} | ${winObj.stitle}</span>
-                    <p>${winObj.price} <b>₽</b></p>
-                </div>
-            </div>
-            <div class="roulette-win__btns">
-                <button type="button" class="btn btn--1 js-replay">
-                    <svg>
-                        <use xlink:href="#si-replay"></use>
-                    </svg>
-                    <span>Повторить</span>
-                </button>
-                <button type="button" class="btn btn--2 js-rbuy">Продать</button>
-            </div>
-        </div>`
-    );
+    const winHtml = winObjs.map(function (winObj) {
+        return `<div class="roulette-win__skin roulette-win__skin--r${winObj.rarity}">
+                    <div class="roulette-win__img">
+                        <img src="${winObj.img}" alt="" />
+                    </div>
+                    <div class="roulette-win__info">
+                        <span>${winObj.title} | ${winObj.stitle}</span>
+                        <p>${winObj.price} <b>₽</b></p>
+                    </div>
+                </div>`;
+    });
 
-    $(".roulette").on("click", ".js-replay", rouletteStart);
+    $(".roulette").addClass("roulette--wins").html(`<div class="roulette-win">
+                                <div class="roulette-win__title">Поздравляем!</div>
+                                <div class="roulette-win__list">
+                                    ${winHtml.join("")}
+                                </div>
+                                <div class="roulette-win__btns">
+                                    <button type="button" class="btn btn--1 js-replay">
+                                        <svg>
+                                            <use xlink:href="#si-replay"></use>
+                                        </svg>
+                                        <span>Повторить</span>
+                                    </button>
+                                    <button type="button" class="btn btn--2 js-rbuy">Продать</button>
+                                </div>
+                            </div>`);
+
+    $(".roulette").on("click", ".js-replay", function () {
+        window.location.reload();
+    });
     $(".roulette").on("click", ".js-rbuy", function () {
         popupOpen("#popup-buy");
     });
 
     const salyutContainer = document.querySelector(".roulette");
-    const salyut = new Fireworks.default(salyutContainer);
+    const salyut = new Fireworks(salyutContainer, {
+        /* options */
+    });
     salyut.start();
-
-    setTimeout(function () {
-        salyut.stop();
-        salyut.clear();
-    }, 5000);
 }
 
 //Timer
@@ -5632,6 +5694,374 @@ function xtimer(id, deadline, cb) {
     }
 
     setClock(id, deadline);
+}
+
+/*--Roulette game--*/
+(function () {
+    const $roulette = $(".roulette");
+
+    const skins = [
+        {
+            _id: 1,
+            img: "img/content/t1.png",
+            title: "Five-SeveN",
+            stitle: "Scrawl",
+            price: "276.38",
+            rarity: 1,
+        },
+        {
+            _id: 2,
+            img: "img/content/t2.png",
+            title: "Five-SeveN",
+            stitle: "Scrawl",
+            price: "276.38",
+            rarity: 2,
+        },
+        {
+            _id: 3,
+            img: "img/content/t3.png",
+            title: "Five-SeveN",
+            stitle: "Scrawl",
+            price: "276.38",
+            rarity: 3,
+        },
+        {
+            _id: 4,
+            img: "img/content/t4.png",
+            title: "Five-SeveN",
+            stitle: "Scrawl",
+            price: "276.38",
+            rarity: 4,
+        },
+        {
+            _id: 5,
+            img: "img/content/t5.png",
+            title: "Five-SeveN",
+            stitle: "Scrawl",
+            price: "276.38",
+            rarity: 5,
+        },
+        {
+            _id: 6,
+            img: "img/content/t6.png",
+            title: "Five-SeveN",
+            stitle: "Scrawl",
+            price: "276.38",
+            rarity: 6,
+        },
+        {
+            _id: 7,
+            img: "img/content/t7.png",
+            title: "Five-SeveN",
+            stitle: "Scrawl",
+            price: "276.38",
+            rarity: 7,
+        },
+        {
+            _id: 8,
+            img: "img/content/t8.png",
+            title: "Five-SeveN",
+            stitle: "Scrawl",
+            price: "276.38",
+            rarity: 8,
+        },
+    ];
+
+    // rouletteRender();
+
+    // $(".js-roulette-start").on("click", function () {
+    //     let outcome = 3; //parseInt($('input').val());
+    //     spinWheel(outcome);
+    // });
+
+    // setTimeout(function () {
+    //     let outcome = 5; //parseInt($('input').val());
+    //     spinWheel(outcome);
+    // }, 1000);
+
+    function rouletteRender() {
+        const rouletteHeight = $roulette.height();
+
+        const items = skins.map((obj) => {
+            return `<div class="roulette-line__item" data-id="${obj._id}">
+                            <div class="thing-item thing-item--${obj.rarity}">
+                                <div class="thing-item__skin">
+                                    <img src="${obj.img}" alt="" />
+                                </div>
+                                <a href="#" class="thing-item__title">                            
+                                    <span>${obj.title}</span><span class="n">${obj.stitle}</span>
+                                </a>
+                                <div class="thing-item__price">
+                                    <span>${obj.price}</span> <b>₽</b>
+                                </div>
+                            </div>
+                        </div>`;
+        });
+
+        $roulette.addClass("roulette--game").css("min-height", `${rouletteHeight}px`);
+        $roulette.html("").append('<div class="roulette-wp"/>');
+        $roulette.find(".roulette-wp").append('<div class="roulette-line"/>');
+
+        for (let x = 0; x < 29; x++) {
+            $roulette.find(".roulette-line").append(`<div class="roulette-line__row">${items.join("")}</div>`);
+        }
+    }
+
+    function spinWheel(roll) {
+        const $wheel = $roulette.find(".roulette-line");
+        const $el = $wheel.find(".roulette-line__item");
+        const position = skins.indexOf(skins[roll - 1]);
+
+        //determine position where to land
+        const rows = 9;
+        const cardWidth = +$el.width();
+        const cardMargin = parseFloat($el.css("marginLeft")) * 2;
+        const card = cardWidth + cardMargin;
+        const centerKf = skins.length / 2 + 0.5;
+
+        /*prettier-ignore*/
+        let landingPosition = (rows * skins.length * card) + (position * card) + (card * centerKf);
+
+        const randomize = 0; //Math.floor(Math.random() * cardWidth) - cardWidth / 2;
+
+        landingPosition = landingPosition + randomize;
+
+        const object = {
+            x: Math.floor(Math.random() * 50) / 100,
+            y: Math.floor(Math.random() * 20) / 100,
+        };
+
+        $wheel.css({
+            "transition-timing-function": "cubic-bezier(0," + object.x + "," + object.y + ",1)",
+            "transition-duration": "6s",
+            transform: "translate3d(-" + landingPosition + "px, 0px, 0px)",
+        });
+
+        console.log(landingPosition);
+
+        setTimeout(function () {
+            $wheel.css({
+                "transition-timing-function": "",
+                "transition-duration": "",
+            });
+            // const resetTo = -(position * card + randomize);
+            // $wheel.css("transform", "translate3d(" + resetTo + "px, 0px, 0px)");
+        }, 6 * 1000);
+    }
+})();
+
+class Hroulette {
+    constructor(opt) {
+        this.$roulette = $(opt.selector);
+        this.skins = opt.skins;
+        this.type = opt.type || 1;
+        this.roll = opt.roll || null;
+        this.cb = opt.cb || function () {};
+
+        if (!this.roll) return;
+
+        switch (this.type) {
+            case 1:
+                this.rouletteRenderX1();
+                break;
+            case 2:
+                this.rouletteRenderX2();
+                break;
+            case 3:
+                this.rouletteRenderX3();
+                break;
+            case 4:
+                this.rouletteRenderX4();
+                break;
+            case 5:
+                this.rouletteRenderX5();
+                break;
+            case 10:
+                this.rouletteRenderX10();
+                break;
+        }
+
+        this.spinWheel(this.roll);
+    }
+
+    rouletteRenderX1() {
+        const items = this.skins.map((obj) => this.itemTemp(obj));
+
+        this.$roulette.html("").append('<div class="roulette-wp roulette-wp--1"/>');
+        this.$roulette.find(".roulette-wp").append('<div class="roulette-line roulette-line--1"/>');
+
+        for (let x = 0; x < 29; x++) {
+            this.$roulette.find(".roulette-line").append(`<div class="roulette-line__row">${items.join("")}</div>`);
+        }
+    }
+
+    rouletteRenderX2() {
+        const items = this.skins.map((obj) => this.itemTemp(obj));
+
+        this.$roulette.addClass("roulette--x2");
+
+        this.$roulette.html("").append('<div class="roulette-wp roulette-wp--1"/>');
+        this.$roulette.find(".roulette-wp--1").append('<div class="roulette-line roulette-line--1"/>');
+
+        this.$roulette.append('<div class="roulette-wp roulette-wp--2"/>');
+        this.$roulette.find(".roulette-wp--2").append('<div class="roulette-line roulette-line--2"/>');
+
+        for (let x = 0; x < 29; x++) {
+            this.$roulette.find(".roulette-line--1").append(`<div class="roulette-line__row">${items.join("")}</div>`);
+            this.$roulette.find(".roulette-line--2").append(`<div class="roulette-line__row">${items.join("")}</div>`);
+        }
+    }
+
+    rouletteRenderX3() {
+        const items = this.skins.map((obj) => this.itemTemp(obj));
+
+        this.$roulette.addClass("roulette--x3");
+
+        this.$roulette.html("").append('<div class="roulette-wp roulette-wp--1"/>');
+        this.$roulette.find(".roulette-wp--1").append('<div class="roulette-line roulette-line--1"/>');
+
+        this.$roulette.append('<div class="roulette-wp roulette-wp--2"/>');
+        this.$roulette.find(".roulette-wp--2").append('<div class="roulette-line roulette-line--2"/>');
+
+        this.$roulette.append('<div class="roulette-wp roulette-wp--3"/>');
+        this.$roulette.find(".roulette-wp--3").append('<div class="roulette-line roulette-line--3"/>');
+
+        for (let x = 0; x < 29; x++) {
+            this.$roulette.find(".roulette-line--1").append(`<div class="roulette-line__row">${items.join("")}</div>`);
+            this.$roulette.find(".roulette-line--2").append(`<div class="roulette-line__row">${items.join("")}</div>`);
+            this.$roulette.find(".roulette-line--3").append(`<div class="roulette-line__row">${items.join("")}</div>`);
+        }
+    }
+
+    rouletteRenderX4() {
+        const items = this.skins.map((obj) => this.itemTemp(obj));
+
+        this.$roulette.addClass("roulette--x4");
+
+        this.$roulette.html("").append('<div class="roulette-wp roulette-wp--1"/>');
+        this.$roulette.find(".roulette-wp--1").append('<div class="roulette-line roulette-line--1"/>');
+
+        this.$roulette.append('<div class="roulette-wp roulette-wp--2"/>');
+        this.$roulette.find(".roulette-wp--2").append('<div class="roulette-line roulette-line--2"/>');
+
+        this.$roulette.append('<div class="roulette-wp roulette-wp--3"/>');
+        this.$roulette.find(".roulette-wp--3").append('<div class="roulette-line roulette-line--3"/>');
+
+        this.$roulette.append('<div class="roulette-wp roulette-wp--4"/>');
+        this.$roulette.find(".roulette-wp--4").append('<div class="roulette-line roulette-line--4"/>');
+
+        for (let x = 0; x < 29; x++) {
+            this.$roulette.find(".roulette-line--1").append(`<div class="roulette-line__row">${items.join("")}</div>`);
+            this.$roulette.find(".roulette-line--2").append(`<div class="roulette-line__row">${items.join("")}</div>`);
+            this.$roulette.find(".roulette-line--3").append(`<div class="roulette-line__row">${items.join("")}</div>`);
+            this.$roulette.find(".roulette-line--4").append(`<div class="roulette-line__row">${items.join("")}</div>`);
+        }
+    }
+
+    rouletteRenderX5() {
+        const items = this.skins.map((obj) => this.itemTemp(obj));
+
+        this.$roulette.addClass("roulette--x5");
+
+        this.$roulette.html("").append('<div class="roulette-wp roulette-wp--1"/>');
+        this.$roulette.find(".roulette-wp--1").append('<div class="roulette-line roulette-line--1"/>');
+
+        this.$roulette.append('<div class="roulette-wp roulette-wp--2"/>');
+        this.$roulette.find(".roulette-wp--2").append('<div class="roulette-line roulette-line--2"/>');
+
+        this.$roulette.append('<div class="roulette-wp roulette-wp--3"/>');
+        this.$roulette.find(".roulette-wp--3").append('<div class="roulette-line roulette-line--3"/>');
+
+        this.$roulette.append('<div class="roulette-wp roulette-wp--4"/>');
+        this.$roulette.find(".roulette-wp--4").append('<div class="roulette-line roulette-line--4"/>');
+
+        this.$roulette.append('<div class="roulette-wp roulette-wp--5"/>');
+        this.$roulette.find(".roulette-wp--5").append('<div class="roulette-line roulette-line--5"/>');
+
+        for (let x = 0; x < 29; x++) {
+            this.$roulette.find(".roulette-line--1").append(`<div class="roulette-line__row">${items.join("")}</div>`);
+            this.$roulette.find(".roulette-line--2").append(`<div class="roulette-line__row">${items.join("")}</div>`);
+            this.$roulette.find(".roulette-line--3").append(`<div class="roulette-line__row">${items.join("")}</div>`);
+            this.$roulette.find(".roulette-line--4").append(`<div class="roulette-line__row">${items.join("")}</div>`);
+            this.$roulette.find(".roulette-line--5").append(`<div class="roulette-line__row">${items.join("")}</div>`);
+        }
+    }
+
+    rouletteRenderX10() {}
+
+    itemTemp(obj) {
+        return `<div class="roulette-line__item" data-id="${obj._id}">
+                    <div class="thing-item thing-item--${obj.rarity}">
+                        <div class="thing-item__skin">
+                            <img src="${obj.img}" alt="" />
+                        </div>
+                        <a href="#" class="thing-item__title">                            
+                            <span>${obj.title}</span><span class="n">${obj.stitle}</span>
+                        </a>
+                        <div class="thing-item__price">
+                            <span>${obj.price}</span> <b>₽</b>
+                        </div>
+                    </div>
+                </div>`;
+    }
+
+    positionLand($wheel) {
+        //const $wheel = this.$roulette.find(".roulette-line");
+        const $el = $wheel.find(".roulette-line__item");
+        const position = this.skins.indexOf(this.skins[this.roll - 1]);
+        const skinLength = this.skins.length;
+
+        //determine position where to land
+        const rows = 9;
+        const cardWidth = +$el.width();
+        const cardMargin = parseFloat($el.css("marginLeft")) * 2;
+        const card = cardWidth + cardMargin;
+        const centerKf = skinLength / 2 + 0.5;
+
+        /*prettier-ignore*/
+        let landingPosition = (rows * skinLength * card) + (position * card) + (card * centerKf);
+
+        const randomize = 0; //Math.floor(Math.random() * cardWidth) - cardWidth / 2;
+
+        landingPosition = landingPosition + randomize;
+
+        return landingPosition;
+    }
+
+    spinWheel(rolls) {
+        let winObjs = [];
+        rolls.forEach((roll, index) => {
+            const $wheel = this.$roulette.find(`.roulette-line--${index + 1}`);
+            this.roll = roll;
+            const landingPosition = this.positionLand($wheel);
+            const object = {
+                x: Math.floor(Math.random() * 50) / 100,
+                y: Math.floor(Math.random() * 20) / 100,
+            };
+
+            $wheel.css({
+                "transition-timing-function": "cubic-bezier(0," + object.x + "," + object.y + ",1)",
+                "transition-duration": "6s",
+                transform: "translate3d(-" + landingPosition + "px, 0px, 0px)",
+            });
+
+            winObjs.push(this.skins[roll - 1]);
+
+            setTimeout(() => {
+                $wheel.css({
+                    "transition-timing-function": "",
+                    "transition-duration": "",
+                });
+
+                rouletteWin(winObjs);
+
+                //rouletteWin(this.skins[roll - 1]);
+                // const resetTo = -(position * card + randomize);
+                // $wheel.css("transform", "translate3d(" + resetTo + "px, 0px, 0px)");
+                // this.cb();
+            }, 6 * 1000 + 500);
+        });
+    }
 }
 
 /*--Bonus wheel--*/
@@ -5784,6 +6214,14 @@ function xtimer(id, deadline, cb) {
             isRotating = false;
             $(".js-pwin-img").attr("src", `${obj.bigImg}`);
             popupOpen("#popup-win");
+
+            $(".bonus-wheel__btn").remove();
+            $(".bonus-wheel__timer").css("display", "flex");
+
+            xtimer(".bonus-wheel__timer", 24 * 3600 * 1000, function () {
+                console.log("End bonus-wheel__timer");
+            });
+
             console.log(obj);
         }, timer);
     };
@@ -5791,6 +6229,8 @@ function xtimer(id, deadline, cb) {
     const start = () => {
         const winPercent = Math.random();
         const gift = getGift(winPercent);
+
+        $(".bonus-wheel__btn").prop("disabled", true);
 
         currentRotate += 360 * 10;
 
@@ -5882,6 +6322,100 @@ $(function () {
             disableOnInteraction: false,
             reverseDirection: true,
         },
+    });
+
+    //start game horizontal roulette
+    $(".js-roulette-start").on("click", function () {
+        const val = $("input[name='roulette_opt']:checked").val();
+        let rolls = [];
+
+        if (val == 1) {
+            rolls = [3];
+        } else if (val == 2) {
+            rolls = [3, 2];
+        } else if (val == 3) {
+            rolls = [3, 2, 5];
+        } else if (val == 4) {
+            rolls = [3, 2, 5, 7];
+        } else if (val == 5) {
+            rolls = [3, 2, 5, 7, 1];
+        }
+
+        const skins = [
+            {
+                _id: 1,
+                img: "img/content/t1.png",
+                title: "Five-SeveN",
+                stitle: "Scrawl",
+                price: "276.38",
+                rarity: 1,
+            },
+            {
+                _id: 2,
+                img: "img/content/t2.png",
+                title: "Five-SeveN",
+                stitle: "Scrawl",
+                price: "276.38",
+                rarity: 2,
+            },
+            {
+                _id: 3,
+                img: "img/content/t3.png",
+                title: "Five-SeveN",
+                stitle: "Scrawl",
+                price: "276.38",
+                rarity: 3,
+            },
+            {
+                _id: 4,
+                img: "img/content/t4.png",
+                title: "Five-SeveN",
+                stitle: "Scrawl",
+                price: "276.38",
+                rarity: 4,
+            },
+            {
+                _id: 5,
+                img: "img/content/t5.png",
+                title: "Five-SeveN",
+                stitle: "Scrawl",
+                price: "276.38",
+                rarity: 5,
+            },
+            {
+                _id: 6,
+                img: "img/content/t6.png",
+                title: "Five-SeveN",
+                stitle: "Scrawl",
+                price: "276.38",
+                rarity: 6,
+            },
+            {
+                _id: 7,
+                img: "img/content/t7.png",
+                title: "Five-SeveN",
+                stitle: "Scrawl",
+                price: "276.38",
+                rarity: 7,
+            },
+            {
+                _id: 8,
+                img: "img/content/t8.png",
+                title: "Five-SeveN",
+                stitle: "Scrawl",
+                price: "276.38",
+                rarity: 8,
+            },
+        ];
+        new Hroulette({
+            selector: ".roulette",
+            skins: skins,
+            type: rolls.length,
+            roll: rolls,
+            cb: function () {
+                console.log("end game");
+            },
+        });
     });
 
     $(document).on("click", (e) => {

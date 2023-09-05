@@ -2480,40 +2480,7 @@ body {
     &-item {
         position: relative;
         padding: 18px;
-        border: 2px solid #666;
-        background: radial-gradient(70.71% 70.71% at 50% 50%, #555 0%, #262626 100%);
-        border-bottom: 2px solid #b3c3da;
-        &--r1 {
-            border-bottom: 2px solid #b3c3da;
-        }
-        &--r2 {
-            border-bottom: 2px solid #5e97d9;
-            //#5e97d9
-        }
-        &--r3 {
-            border-bottom: 2px solid #4a69ff;
-            //#4a69ff
-        }
-        &--r4 {
-            border-bottom: 2px solid #8947ff;
-            //#8947ff
-        }
-        &--r5 {
-            border-bottom: 2px solid #b12ec1;
-            //#b12ec1
-        }
-        &--r6 {
-            border-bottom: 2px solid #eb4c4b;
-            //#eb4c4b
-        }
-        &--r7 {
-            border-bottom: 2px solid #caac04;
-            //#caac04
-        }
-        &--r8 {
-            border-bottom: 2px solid #f1af35;
-            //#f1af35
-        }
+        background: url(../img/bg-skin.png) no-repeat center center / 100% 100%;
         &__skin {
             max-width: 184px;
             margin-left: auto;
@@ -2534,7 +2501,7 @@ body {
             svg {
                 width: 20px;
                 height: 20px;
-                fill: #525252;
+                fill: #05d7ce;
                 transition: all 0.2s ease-in-out;
             }
             &:hover {
@@ -2544,7 +2511,7 @@ body {
             }
         }
         &__title {
-            color: #b7bcdb;
+            color: #dadada;
             font-size: 14px;
             font-weight: 500;
             line-height: 15px;
@@ -2570,7 +2537,7 @@ body {
             }
         }
         &__subtitle {
-            color: #b7bcdb;
+            color: #dadada;
             font-size: 13px;
             font-weight: 500;
             line-height: 18px;
@@ -4117,16 +4084,16 @@ body {
         }
     }
     &--game {
-        overflow: hidden;
         position: relative;
         display: flex;
         align-items: center;
-        justify-content: center;
     }
     &-wp {
         position: relative;
         padding-bottom: 60px;
         overflow: hidden;
+        display: flex;
+        justify-content: center;
         &:after {
             content: "";
             height: 40px;
@@ -4153,21 +4120,23 @@ body {
     &-line {
         display: flex;
         flex-flow: nowrap;
-        align-content: flex-start;
-        justify-content: flex-start;
-        margin-top: auto;
-        margin-bottom: auto;
+        justify-content: center;
         pointer-events: none;
         &__item {
-            flex: 0 0 245px;
-            max-width: 245px;
-            padding: 0 10px;
+            width: 225px;
+            margin: 0 10px;
+        }
+        &__row {
+            display: flex;
+            position: relative;
         }
     }
     &-win {
         text-align: center;
         position: relative;
         z-index: 1;
+        margin-left: auto;
+        margin-right: auto;
         &:after {
             content: "";
             height: 40px;
@@ -4188,42 +4157,13 @@ body {
             margin-right: auto;
             margin-top: 70px;
             overflow: hidden;
-            width: 286px;
+            flex: 0 0 286px;
+            max-width: 286px;
             height: 286px;
             border-radius: 100%;
-            border: 4px solid #ff12ae;
-            background: radial-gradient(70.71% 70.71% at 50% 50%, #4d4d4d 62.37%, #171717 69.55%);
-            &--r1 {
-                border: 4px solid #b3c3da;
-            }
-            &--r2 {
-                border: 4px solid #5e97d9;
-                //#5e97d9
-            }
-            &--r3 {
-                border: 4px solid #4a69ff;
-                //#4a69ff
-            }
-            &--r4 {
-                border: 4px solid #8947ff;
-                //#8947ff
-            }
-            &--r5 {
-                border: 4px solid #b12ec1;
-                //#b12ec1
-            }
-            &--r6 {
-                border: 4px solid #eb4c4b;
-                //#eb4c4b
-            }
-            &--r7 {
-                border: 4px solid #caac04;
-                //#caac04
-            }
-            &--r8 {
-                border: 4px solid #f1af35;
-                //#f1af35
-            }
+            margin: 20px 5px 0;
+            border: 1px solid #ff12ae;
+            background: url(../img/bg-skin.png) no-repeat center center / 300px auto;
         }
         &__img {
             max-width: 210px;
@@ -4280,6 +4220,75 @@ body {
                 }
             }
         }
+        &__list {
+            display: flex;
+            justify-content: center;
+            flex-flow: row wrap;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+        }
+    }
+    &--x2 {
+        display: flex;
+        justify-content: space-between;
+        .roulette {
+            &-wp {
+                flex: 0 0 48%;
+                max-width: 48%;
+            }
+        }
+    }
+    &--x3 {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        .roulette {
+            &-wp {
+                flex: 0 0 48%;
+                max-width: 48%;
+                &--3 {
+                    flex: 0 0 100%;
+                    max-width: 100%;
+                    margin-top: 40px;
+                }
+            }
+        }
+    }
+    &--x4 {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        .roulette {
+            &-wp {
+                flex: 0 0 48%;
+                max-width: 48%;
+                &--3,
+                &--4 {
+                    margin-top: 40px;
+                }
+            }
+        }
+    }
+    &--x5 {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        .roulette {
+            &-wp {
+                flex: 0 0 48%;
+                max-width: 48%;
+                &--3,
+                &--4 {
+                    margin-top: 40px;
+                }
+                &--5 {
+                    margin-top: 40px;
+                    flex: 0 0 100%;
+                    max-width: 100%;
+                }
+            }
+        }
     }
     @media screen and (max-width: 1024px) {
         &--game {
@@ -4298,9 +4307,8 @@ body {
         }
         &-line {
             &__item {
-                flex: 0 0 170px;
-                max-width: 170px;
-                padding: 0 5px;
+                width: 170px;
+                margin: 0 5px;
             }
         }
     }
@@ -4407,7 +4415,7 @@ body {
     &:after {
         content: attr(data-title);
         border: 2px solid #616161;
-        background-color: #323232;
+        background-color: #010101;
         padding: 4px 7px;
         font-size: 13px;
         position: absolute;
@@ -4539,6 +4547,7 @@ body {
     border-radius: 50%;
     margin: 50px auto;
     &__in {
+        user-select: none;
         position: absolute;
         width: 620px;
         height: 620px;
@@ -4578,6 +4587,11 @@ body {
         &:hover {
             box-shadow: 0px 0px 0px 0px #c83538;
         }
+        &:disabled {
+            box-shadow: none;
+            opacity: 0.7;
+            cursor: default;
+        }
     }
     &__ak {
         max-width: 380px;
@@ -4586,6 +4600,25 @@ body {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+    &__timer {
+        width: 270px;
+        height: 80px;
+        position: absolute;
+        top: 110px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        z-index: 2;
+        border: 5px solid #c83538;
+        text-shadow: 0px 0.9px 0px #c83538, 0px 0px 4px #c83538;
+        background: #171717;
+        box-shadow: 0px 30px 95px 0px #c83538;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 33px;
+        font-weight: 700;
     }
     @media screen and (max-width: 1024px) {
         width: 340px;
@@ -4618,6 +4651,15 @@ body {
             border-radius: 50%;
             font-size: 20px;
         }
+        &__timer {
+            top: 50%;
+            margin-top: -20px;
+            width: 120px;
+            height: 40px;
+            font-size: 18px;
+            border: 2px solid #c83538;
+            box-shadow: 0px 15px 95px 0px #c83538;
+        }
     }
     @media screen and (max-width: 350px) {
         width: 290px;
@@ -4640,12 +4682,17 @@ body {
                 z-index: 2;
             }
         }
+        &__timer {
+            width: 100px;
+            font-size: 17px;
+        }
     }
 }
 
 .wheel {
     position: relative;
     overflow: hidden;
+    user-select: none;
     width: 100%;
     height: 100%;
     border-radius: 50%;
