@@ -5101,139 +5101,6 @@
     return V.use(re), V;
 });
 
-/* jQuery Easing v1.3.2 */
-(function (h) {
-    h.easing.jswing = h.easing.swing;
-    h.extend(h.easing, {
-        def: "easeOutQuad",
-        swing: function (e, a, c, b, d) {
-            return h.easing[h.easing.def](e, a, c, b, d);
-        },
-        easeInQuad: function (e, a, c, b, d) {
-            return b * (a /= d) * a + c;
-        },
-        easeOutQuad: function (e, a, c, b, d) {
-            return -b * (a /= d) * (a - 2) + c;
-        },
-        easeInOutQuad: function (e, a, c, b, d) {
-            return 1 > (a /= d / 2) ? (b / 2) * a * a + c : (-b / 2) * (--a * (a - 2) - 1) + c;
-        },
-        easeInCubic: function (e, a, c, b, d) {
-            return b * (a /= d) * a * a + c;
-        },
-        easeOutCubic: function (e, a, c, b, d) {
-            return b * ((a = a / d - 1) * a * a + 1) + c;
-        },
-        easeInOutCubic: function (e, a, c, b, d) {
-            return 1 > (a /= d / 2) ? (b / 2) * a * a * a + c : (b / 2) * ((a -= 2) * a * a + 2) + c;
-        },
-        easeInQuart: function (e, a, c, b, d) {
-            return b * (a /= d) * a * a * a + c;
-        },
-        easeOutQuart: function (e, a, c, b, d) {
-            return -b * ((a = a / d - 1) * a * a * a - 1) + c;
-        },
-        easeInOutQuart: function (e, a, c, b, d) {
-            return 1 > (a /= d / 2) ? (b / 2) * a * a * a * a + c : (-b / 2) * ((a -= 2) * a * a * a - 2) + c;
-        },
-        easeInQuint: function (e, a, c, b, d) {
-            return b * (a /= d) * a * a * a * a + c;
-        },
-        easeOutQuint: function (e, a, c, b, d) {
-            return b * ((a = a / d - 1) * a * a * a * a + 1) + c;
-        },
-        easeInOutQuint: function (e, a, c, b, d) {
-            return 1 > (a /= d / 2) ? (b / 2) * a * a * a * a * a + c : (b / 2) * ((a -= 2) * a * a * a * a + 2) + c;
-        },
-        easeInSine: function (e, a, c, b, d) {
-            return -b * Math.cos((a / d) * (Math.PI / 2)) + b + c;
-        },
-        easeOutSine: function (e, a, c, b, d) {
-            return b * Math.sin((a / d) * (Math.PI / 2)) + c;
-        },
-        easeInOutSine: function (e, a, c, b, d) {
-            return (-b / 2) * (Math.cos((Math.PI * a) / d) - 1) + c;
-        },
-        easeInExpo: function (e, a, c, b, d) {
-            return 0 == a ? c : b * Math.pow(2, 10 * (a / d - 1)) + c;
-        },
-        easeOutExpo: function (e, a, c, b, d) {
-            return a == d ? c + b : b * (-Math.pow(2, (-10 * a) / d) + 1) + c;
-        },
-        easeInOutExpo: function (e, a, c, b, d) {
-            return 0 == a ? c : a == d ? c + b : 1 > (a /= d / 2) ? (b / 2) * Math.pow(2, 10 * (a - 1)) + c : (b / 2) * (-Math.pow(2, -10 * --a) + 2) + c;
-        },
-        easeInCirc: function (e, a, c, b, d) {
-            return -b * (Math.sqrt(1 - (a /= d) * a) - 1) + c;
-        },
-        easeOutCirc: function (e, a, c, b, d) {
-            return b * Math.sqrt(1 - (a = a / d - 1) * a) + c;
-        },
-        easeInOutCirc: function (e, a, c, b, d) {
-            return 1 > (a /= d / 2) ? (-b / 2) * (Math.sqrt(1 - a * a) - 1) + c : (b / 2) * (Math.sqrt(1 - (a -= 2) * a) + 1) + c;
-        },
-        easeInElastic: function (e, a, c, b, d) {
-            e = 1.70158;
-            var f = 0,
-                g = b;
-            if (0 == a) return c;
-            if (1 == (a /= d)) return c + b;
-            f || (f = 0.3 * d);
-            g < Math.abs(b) ? ((g = b), (e = f / 4)) : (e = (f / (2 * Math.PI)) * Math.asin(b / g));
-            return -(g * Math.pow(2, 10 * --a) * Math.sin((2 * (a * d - e) * Math.PI) / f)) + c;
-        },
-        easeOutElastic: function (e, a, c, b, d) {
-            e = 1.70158;
-            var f = 0,
-                g = b;
-            if (0 == a) return c;
-            if (1 == (a /= d)) return c + b;
-            f || (f = 0.3 * d);
-            g < Math.abs(b) ? ((g = b), (e = f / 4)) : (e = (f / (2 * Math.PI)) * Math.asin(b / g));
-            return g * Math.pow(2, -10 * a) * Math.sin((2 * (a * d - e) * Math.PI) / f) + b + c;
-        },
-        easeInOutElastic: function (e, a, c, b, d) {
-            e = 1.70158;
-            var f = 0,
-                g = b;
-            if (0 == a) return c;
-            if (2 == (a /= d / 2)) return c + b;
-            f || (f = 0.3 * d * 1.5);
-            g < Math.abs(b) ? ((g = b), (e = f / 4)) : (e = (f / (2 * Math.PI)) * Math.asin(b / g));
-            return 1 > a
-                ? -0.5 * g * Math.pow(2, 10 * --a) * Math.sin((2 * (a * d - e) * Math.PI) / f) + c
-                : g * Math.pow(2, -10 * --a) * Math.sin((2 * (a * d - e) * Math.PI) / f) * 0.5 + b + c;
-        },
-        easeInBack: function (e, a, c, b, d, f) {
-            void 0 == f && (f = 1.70158);
-            return b * (a /= d) * a * ((f + 1) * a - f) + c;
-        },
-        easeOutBack: function (e, a, c, b, d, f) {
-            void 0 == f && (f = 1.70158);
-            return b * ((a = a / d - 1) * a * ((f + 1) * a + f) + 1) + c;
-        },
-        easeInOutBack: function (e, a, c, b, d, f) {
-            void 0 == f && (f = 1.70158);
-            return 1 > (a /= d / 2) ? (b / 2) * a * a * (((f *= 1.525) + 1) * a - f) + c : (b / 2) * ((a -= 2) * a * (((f *= 1.525) + 1) * a + f) + 2) + c;
-        },
-        easeInBounce: function (e, a, c, b, d) {
-            return b - h.easing.easeOutBounce(e, d - a, 0, b, d) + c;
-        },
-        easeOutBounce: function (e, a, c, b, d) {
-            return (a /= d) < 1 / 2.75
-                ? 7.5625 * b * a * a + c
-                : a < 2 / 2.75
-                ? b * (7.5625 * (a -= 1.5 / 2.75) * a + 0.75) + c
-                : a < 2.5 / 2.75
-                ? b * (7.5625 * (a -= 2.25 / 2.75) * a + 0.9375) + c
-                : b * (7.5625 * (a -= 2.625 / 2.75) * a + 0.984375) + c;
-        },
-        easeInOutBounce: function (e, a, c, b, d) {
-            return a < d / 2 ? 0.5 * h.easing.easeInBounce(e, 2 * a, 0, b, d) + c : 0.5 * h.easing.easeOutBounce(e, 2 * a - d, 0, b, d) + 0.5 * b + c;
-        },
-    });
-})(jQuery);
-
 /*!
  * fireworks-js 1.4.1 by Vitalij Ryndin (https://crashmax.ru)
  * https://fireworks.js.org
@@ -5241,41 +5108,6 @@
  */
 /*prettier-ignore*/
 !function(t,i){if("object"==typeof exports&&"object"==typeof module)module.exports=i();else if("function"==typeof define&&define.amd)define([],i);else{var s=i();for(var e in s)("object"==typeof exports?exports:t)[e]=s[e]}}(this,(function(){return(()=>{"use strict";var t={511:(t,i,s)=>{Object.defineProperty(i,"__esModule",{value:!0}),i.Explosion=void 0;var e=s(909);i.Explosion=class{constructor(t){var{x:i,y:s,ctx:n,hue:h,gravity:o,friction:a,brightness:r,flickering:c,lineWidth:_,explosionLength:d}=t;for(this._coordinates=[],this._alpha=1,this._x=i,this._y=s,this._ctx=n,this._gravity=o,this._friction=a,this._flickering=c,this._lineWidth=_,this._explosionLength=d;this._explosionLength--;)this._coordinates.push([i,s]);this._angle=(0,e.randomFloat)(0,2*Math.PI),this._speed=(0,e.randomInt)(1,10),this._hue=(0,e.randomInt)(h-20,h+20),this._brightness=(0,e.randomInt)(r.min,r.max),this._decay=(0,e.randomFloat)(r.decay.min,r.decay.max)}update(t){this._coordinates.pop(),this._coordinates.unshift([this._x,this._y]),this._speed*=this._friction,this._x+=Math.cos(this._angle)*this._speed,this._y+=Math.sin(this._angle)*this._speed+this._gravity,this._alpha-=this._decay,this._alpha<=this._decay&&t()}draw(){var t=this._coordinates.length-1;this._ctx.beginPath(),this._ctx.lineWidth=this._lineWidth,this._ctx.fillStyle=(0,e.hsla)(this._hue,this._brightness,this._alpha),this._ctx.moveTo(this._coordinates[t][0],this._coordinates[t][1]),this._ctx.lineTo(this._x,this._y),this._ctx.strokeStyle=(0,e.hsla)(this._hue,this._flickering?(0,e.randomFloat)(0,this._brightness):this._brightness,this._alpha),this._ctx.stroke()}}},909:(t,i)=>{Object.defineProperty(i,"__esModule",{value:!0}),i.hsla=i.getDistance=i.randomInt=i.randomFloat=void 0,i.randomFloat=function(t,i){return Math.random()*(i-t)+t},i.randomInt=function(t,i){return Math.floor(t+Math.random()*(i+1-t))},i.getDistance=function(t,i,s,e){var n=Math.pow;return Math.sqrt(n(t-s,2)+n(i-e,2))},i.hsla=function(t,i){var s=arguments.length>2&&void 0!==arguments[2]?arguments[2]:1;return"hsla(".concat(t,", 100%, ").concat(i,"%, ").concat(s,")")}},449:function(t,i,s){var e=this&&this.__awaiter||function(t,i,s,e){return new(s||(s=Promise))((function(n,h){function o(t){try{r(e.next(t))}catch(t){h(t)}}function a(t){try{r(e.throw(t))}catch(t){h(t)}}function r(t){var i;t.done?n(t.value):(i=t.value,i instanceof s?i:new s((function(t){t(i)}))).then(o,a)}r((e=e.apply(t,i||[])).next())}))};Object.defineProperty(i,"__esModule",{value:!0}),i.Sound=void 0;var n=s(909);i.Sound=class{constructor(t){this._buffer=[],this.onInit=!0,this.options=Object.assign({enabled:!1,files:["explosion0.mp3","explosion1.mp3","explosion2.mp3"],volume:{min:4,max:8}},t),this.init()}init(){this.onInit&&this.options.enabled&&(this.onInit=!1,this._audioContext=new(window.AudioContext||window.webkitAudioContext),this.load())}load(){return e(this,void 0,void 0,(function*(){for(var t of this.options.files){var i=yield(yield fetch(t)).arrayBuffer();this._audioContext.decodeAudioData(i).then((t=>{this._buffer.push(t)})).catch((t=>{throw t}))}}))}play(){if(this.options.enabled&&this._buffer.length){var t=this._audioContext.createBufferSource(),i=this._buffer[(0,n.randomInt)(0,this._buffer.length-1)],s=this._audioContext.createGain();t.buffer=i,s.gain.value=(0,n.randomFloat)(this.options.volume.min/100,this.options.volume.max/100),s.connect(this._audioContext.destination),t.connect(s),t.start(0)}else this.init()}}},668:(t,i,s)=>{Object.defineProperty(i,"__esModule",{value:!0}),i.Trace=void 0;var e=s(909);i.Trace=class{constructor(t){var{x:i,y:s,dx:n,dy:h,ctx:o,hue:a,speed:r,traceLength:c,acceleration:_}=t;for(this._coordinates=[],this._currentDistance=0,this._x=i,this._y=s,this._sx=i,this._sy=s,this._dx=n,this._dy=h,this._ctx=o,this._hue=a,this._speed=r,this._traceLength=c,this._acceleration=_,this._totalDistance=(0,e.getDistance)(i,s,n,h);this._traceLength--;)this._coordinates.push([i,s]);this._angle=Math.atan2(h-s,n-i),this._brightness=(0,e.randomInt)(50,70)}update(t){this._coordinates.pop(),this._coordinates.unshift([this._x,this._y]),this._speed*=this._acceleration;var i=Math.cos(this._angle)*this._speed,s=Math.sin(this._angle)*this._speed;this._currentDistance=(0,e.getDistance)(this._sx,this._sy,this._x+i,this._y+s),this._currentDistance>=this._totalDistance?t(this._dx,this._dy,this._hue):(this._x+=i,this._y+=s)}draw(){var t=this._coordinates.length-1;this._ctx.beginPath(),this._ctx.moveTo(this._coordinates[t][0],this._coordinates[t][1]),this._ctx.lineTo(this._x,this._y),this._ctx.strokeStyle=(0,e.hsla)(this._hue,this._brightness),this._ctx.stroke()}}}},i={};function s(e){var n=i[e];if(void 0!==n)return n.exports;var h=i[e]={exports:{}};return t[e].call(h.exports,h,h.exports,s),h.exports}var e={};return(()=>{var t=e;Object.defineProperty(t,"__esModule",{value:!0}),t.Fireworks=void 0;var i=s(668),n=s(449),h=s(511),o=s(909);t.Fireworks=class{constructor(t){var{autoresize:i=!0,boundaries:s,brightness:e,delay:h,hue:o,mouse:a,sound:r,rocketsPoint:c,lineWidth:_,lineStyle:d="round",flickering:l=50,trace:u=3,traceSpeed:m=10,intensity:p=30,explosion:x=5,gravity:v=1.5,opacity:g=.5,particles:f=50,friction:y=.95,acceleration:b=1.05}=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};this._tick=0,this._timestamp=performance.now(),this._version="1.4.1",this._running=!1,this._m=!1,t instanceof HTMLCanvasElement?(this._container=t,this._canvas=t):(this._container=t,this._canvas=document.createElement("canvas"),this._container.appendChild(this._canvas)),this._ctx=this._canvas.getContext("2d"),this._sound=new n.Sound(r),this.setSize(),this.setBoundaries(Object.assign({visible:!1,x:50,y:50},s)),this.autoresize=i,this.trace=u,this.explosion=x,this.gravity=v,this.opacity=g,this.particles=f,this.friction=y,this.acceleration=b,this.flickering=l,this.intensity=p,this.traceSpeed=m,this.lineStyle=d,this.hue=Object.assign({min:0,max:360},o),this.rocketsPoint=Object.assign({min:50,max:50},c),this.lineWidth=Object.assign({explosion:{min:1,max:3},trace:{min:1,max:2}},_),this.mouse=Object.assign({click:!1,move:!1,max:1},a),this.delay=Object.assign({min:15,max:30},h),this.brightness=Object.assign({min:50,max:80,decay:{min:.015,max:.03}},e),this.autoresize&&window.addEventListener("resize",(()=>this.windowResize())),this._canvas.addEventListener("mousedown",(t=>{this.mouseDown(t)})),this._canvas.addEventListener("mouseup",(t=>{this.mouseUp(t)})),this._canvas.addEventListener("mousemove",(t=>{this.mouseMove(t)}))}get isRunning(){return this._running}get version(){return this._version}start(){this._running||(this._running=!0,this.clear(),this.render())}stop(){this._running&&(this._running=!1,this.clear())}unmount(){window.removeEventListener("resize",this.windowResize),this._canvas.removeEventListener("mousedown",this.mouseDown),this._canvas.removeEventListener("mouseup",this.mouseUp),this._canvas.removeEventListener("mousemove",this.mouseMove)}pause(){this._running=!this._running,this._running&&this.render()}clear(){this._ctx&&(this._traces=[],this._explosions=[],this._ctx.clearRect(0,0,this._width,this._height))}setOptions(t){for(var[i,s]of Object.entries(t)){var e=Object.prototype.hasOwnProperty.call(this,i);if("function"==typeof this[i])throw new Error("You cannot change the methods of the class!");e&&("object"==typeof this[i]?Object.assign(this[i],s):this[i]=s),"sound"===i&&Object.assign(this._sound.options,s)}}setSize(){var{width:t=(this._container instanceof HTMLCanvasElement?this._canvas.width:this._container.clientWidth),height:i=(this._container instanceof HTMLCanvasElement?this._canvas.height:this._container.clientHeight)}=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};this._width=t,this._height=i,this._canvas.width=t,this._canvas.height=i,this.setBoundaries({width:t,height:i})}setBoundaries(t){this.boundaries=Object.assign(Object.assign({},this.boundaries),t)}useMouse(t,i){(this.mouse.click||this.mouse.move)&&(this._mx=t.pageX-this._canvas.offsetLeft,this._my=t.pageY-this._canvas.offsetTop,this._m=i)}windowResize(){this.setSize()}mouseDown(t){this.useMouse(t,this.mouse.click)}mouseUp(t){this.useMouse(t,!1)}mouseMove(t){this.useMouse(t,this._m)}render(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:this._timestamp;if(this._ctx&&this._running){requestAnimationFrame((t=>this.render(t))),this._ctx.globalCompositeOperation="destination-out",this._ctx.fillStyle="rgba(0, 0, 0, ".concat(this.opacity,")"),this._ctx.fillRect(0,0,this._width,this._height),this._ctx.globalCompositeOperation="lighter",this._ctx.lineCap=this.lineStyle,this._ctx.lineJoin="round",this.drawBoundaries(),this.initTrace(),this.drawTrace(),this.drawExplosion();var i=t-this._timestamp;this._timestamp=t,this._tick+=i*(this.intensity*Math.PI)/1e3}}drawBoundaries(){this.boundaries.visible&&(this._ctx.beginPath(),this._ctx.lineWidth=1,this._ctx.strokeStyle="red",this._ctx.rect(this.boundaries.x,this.boundaries.y,this.boundaries.width-2*this.boundaries.x,.5*this.boundaries.height),this._ctx.stroke())}initTrace(){this._ds=(0,o.randomInt)(this.delay.min,this.delay.max),(this._tick>this._ds||this._m&&this.mouse.max>this._traces.length)&&(this._traces.push(new i.Trace({x:this._width*(0,o.randomInt)(this.rocketsPoint.min,this.rocketsPoint.max)/100,y:this._height,dx:this._mx&&this.mouse.move||this._m?this._mx:(0,o.randomInt)(this.boundaries.x,this.boundaries.width-2*this.boundaries.x),dy:this._my&&this.mouse.move||this._m?this._my:(0,o.randomInt)(this.boundaries.y,.5*this.boundaries.height),ctx:this._ctx,hue:(0,o.randomInt)(this.hue.min,this.hue.max),speed:this.traceSpeed,acceleration:this.acceleration,traceLength:this.trace})),this._tick=0)}drawTrace(){var t=this._traces.length;for(this._ctx.lineWidth=(0,o.randomFloat)(this.lineWidth.trace.min,this.lineWidth.trace.max);t--;)this._traces[t].draw(),this._traces[t].update(((i,s,e)=>{this.initExplosion(i,s,e),this._sound.play(),this._traces.splice(t,1)}))}initExplosion(t,i,s){for(var e=this.particles;e--;)this._explosions.push(new h.Explosion({x:t,y:i,ctx:this._ctx,hue:s,friction:this.friction,gravity:this.gravity,flickering:(0,o.randomInt)(0,100)<=this.flickering,lineWidth:(0,o.randomFloat)(this.lineWidth.explosion.min,this.lineWidth.explosion.max),explosionLength:Math.round(this.explosion),brightness:this.brightness}))}drawExplosion(){for(var t=this._explosions.length;t--;)this._explosions[t].draw(),this._explosions[t].update((()=>{this._explosions.splice(t,1)}))}}})(),e})()}));
-
-$.fn.animateTransform = function (/* [start,] end [, duration] [, callback] */) {
-    var start = null,
-        end = null,
-        duration = 400,
-        callback = function () {};
-    for (var i = 0; i < arguments.length; i++) {
-        if (typeof arguments[i] == "string") {
-            if (!start) start = arguments[i];
-            else end = arguments[i];
-        } else if (typeof arguments[i] == "number") {
-            duration = arguments[i];
-        } else if (typeof arguments[i] == "function") {
-            callback = arguments[i];
-        }
-    }
-    if (start && !end) {
-        end = start;
-        start = null;
-    }
-    if (!end) return;
-    if (start) {
-        this.css("transform", start);
-    }
-    if (duration < 16) duration = 16;
-    var transitionB4 = this.css("transition");
-    this.css("transition", "transform " + duration + "ms");
-    this.css("transform", end);
-    var $el = this;
-    setTimeout(function () {
-        $el.css("transition", transitionB4 || "");
-        $el.css("transform", end);
-        callback();
-    }, duration);
-};
 
 /* Functions                                        
 --------------------------------------------------------*/
@@ -5362,260 +5194,6 @@ function goTo(line, t) {
     );
 }
 
-//wait for final event
-const waitForFinalEvent = (function () {
-    //unique id
-    const uniqueID = function () {
-        return "_" + Math.random().toString(36).substr(2, 9);
-    };
-
-    const timers = {};
-    return function (callback, ms, uniqueId) {
-        if (!uniqueId) {
-            uniqueId = "Don't call this twice without a uniqueId";
-        }
-        if (timers[uniqueId]) {
-            clearTimeout(timers[uniqueId]);
-        }
-        timers[uniqueId] = setTimeout(callback, ms);
-    };
-})();
-
-//Roulette Игра
-var roulettePlay = false;
-const skins = [
-    {
-        _id: 1,
-        img: "img/content/t1.png",
-        title: "Five-SeveN",
-        stitle: "Scrawl",
-        price: "276.38",
-        rarity: 1,
-    },
-    {
-        _id: 2,
-        img: "img/content/t2.png",
-        title: "Five-SeveN",
-        stitle: "Scrawl",
-        price: "276.38",
-        rarity: 2,
-    },
-    {
-        _id: 3,
-        img: "img/content/t3.png",
-        title: "Five-SeveN",
-        stitle: "Scrawl",
-        price: "276.38",
-        rarity: 3,
-    },
-    {
-        _id: 4,
-        img: "img/content/t4.png",
-        title: "Five-SeveN",
-        stitle: "Scrawl",
-        price: "276.38",
-        rarity: 4,
-    },
-    {
-        _id: 5,
-        img: "img/content/t5.png",
-        title: "Five-SeveN",
-        stitle: "Scrawl",
-        price: "276.38",
-        rarity: 5,
-    },
-    {
-        _id: 6,
-        img: "img/content/t6.png",
-        title: "Five-SeveN",
-        stitle: "Scrawl",
-        price: "276.38",
-        rarity: 6,
-    },
-    {
-        _id: 7,
-        img: "img/content/t7.png",
-        title: "Five-SeveN",
-        stitle: "Scrawl",
-        price: "276.38",
-        rarity: 7,
-    },
-    {
-        _id: 8,
-        img: "img/content/t8.png",
-        title: "Five-SeveN",
-        stitle: "Scrawl",
-        price: "276.38",
-        rarity: 8,
-    },
-];
-function rouletteBegin(winId) {
-    roulettePlay = true;
-    let caseCount = 0;
-    let caseBlocks = "";
-
-    const $rouletteWrap = $(".roulette");
-    const $rouletteLine = $(".roulette-line");
-    const $rouletteItem = $(".roulette-line .roulette-line__item");
-    const $rouletteItemWin = $('.roulette-line .roulette-line__item[data-id="' + winId + '"]');
-
-    //$rouletteWrap.addClass("double-roulette--begin");
-    $rouletteLine.css("transform", "translateX(0)");
-    //$rouletteLine.css("transition", "none");
-    $rouletteItem.removeClass("r-win");
-
-    if ($rouletteItemWin.length === 1) {
-        $.each($rouletteItem, function (key, val) {
-            let caseId = $(val).data("id");
-            let nclass = $(val).attr("class");
-            caseBlocks += '<div class="' + nclass + '" data-id="' + caseId + '">' + $(val).html() + " </div>";
-            caseCount++;
-        });
-
-        for (var i = 0; i <= parseInt(11000 / (caseCount * 100)); i++) {
-            $rouletteLine.append(caseBlocks);
-        }
-    }
-
-    const winCase = document.querySelectorAll('.roulette-line > .roulette-line__item[data-id="' + winId + '"]');
-    const winCasePosition = $(winCase[winCase.length - 2]).position();
-    const iMargin = parseInt($rouletteItem.css("marginLeft")) + parseInt($rouletteItem.css("marginRight"));
-    const start_r = winCasePosition.left - $rouletteWrap.width() / 2 + ($rouletteItem.width() + iMargin) / 2;
-
-    //roulette start
-    $rouletteLine.css("transform", `translateX(-${start_r}px)`);
-    $rouletteLine.on("transitionend", function () {
-        $(winCase[winCase.length - 2]).addClass("r-win");
-        roulettePlay = false;
-        rouletteWin(winId);
-        $(window).off("resize", wdResize);
-    });
-
-    //roulette on resize
-    $(window).on("resize", wdResize);
-    function wdResize() {
-        if (roulettePlay === true) {
-            waitForFinalEvent(
-                function () {
-                    console.log(roulettePlay);
-                    $rouletteLine.stop();
-                    rouletteBegin(winId);
-                },
-                200,
-                "some unique string roulettePlay"
-            );
-        }
-    }
-
-    // $rouletteLine.animate(
-    //     {
-    //         marginLeft: "-=" + start_r + "px",
-    //     },
-    //     {
-    //         duration: 7275,
-    //         //easing: "easeInOutQuad",
-    //         progress: function (a, p, c) {
-    //             // roulette on resize
-    //             $(window).resize(function () {
-    //                 if (roulettePlay === true) {
-    //                     waitForFinalEvent(
-    //                         function () {
-    //                             $rouletteLine.stop();
-    //                             rouletteBegin(winId);
-    //                         },
-    //                         200,
-    //                         "some unique string doubleRoulettePlay"
-    //                     );
-    //                 }
-    //             });
-    //         },
-    //         complete: function () {
-    //             $(winCase[winCase.length - 2]).addClass("r-win");
-    //             $rouletteLine.css("transition", ".5s");
-    //             roulettePlay = false;
-    //             rouletteWin(winId);
-    //         },
-    //     }
-    // ); // end animate
-}
-
-function rouletteStart() {
-    const roulette = $(".roulette");
-    const rouletteHeight = roulette.height();
-
-    const items = skins.map((obj) => {
-        return `<div class="roulette-line__item" data-id="${obj._id}">
-                        <div class="thing-item thing-item--${obj.rarity}">
-                            <div class="thing-item__skin">
-                                <img src="${obj.img}" alt="" />
-                            </div>
-                            <a href="#" class="thing-item__title">                            
-                                <span>${obj.title}</span><span class="n">${obj.stitle}</span>
-                            </a>
-                            <div class="thing-item__price">
-                                <span>${obj.price}</span> <b>₽</b>
-                            </div>
-                        </div>
-                    </div>`;
-    });
-
-    roulette.addClass("roulette--game").css("min-height", `${rouletteHeight}px`);
-    roulette.html("").append('<div class="roulette-wp"/>');
-    roulette.find(".roulette-wp").append('<div class="roulette-line"/>');
-    roulette.find(".roulette-line").html(items.join(""));
-
-    let winId = Math.ceil(Math.random() * 7 + 1);
-    setTimeout(function () {
-        rouletteBegin(winId);
-    }, 100);
-}
-
-function rouletteWin(winObjs) {
-    // winId = winId ? winId : Math.ceil(Math.random() * 7 + 1);
-    // const winObj = skins.find((el) => el._id == winId);
-
-    const winHtml = winObjs.map(function (winObj) {
-        return `<div class="roulette-win__skin roulette-win__skin--r${winObj.rarity}">
-                    <div class="roulette-win__img">
-                        <img src="${winObj.img}" alt="" />
-                    </div>
-                    <div class="roulette-win__info">
-                        <span>${winObj.title} | ${winObj.stitle}</span>
-                        <p>${winObj.price} <b>₽</b></p>
-                    </div>
-                </div>`;
-    });
-
-    $(".roulette").addClass("roulette--wins").html(`<div class="roulette-win">
-                                <div class="roulette-win__title">Поздравляем!</div>
-                                <div class="roulette-win__list">
-                                    ${winHtml.join("")}
-                                </div>
-                                <div class="roulette-win__btns">
-                                    <button type="button" class="btn btn--1 js-replay">
-                                        <svg>
-                                            <use xlink:href="#si-replay"></use>
-                                        </svg>
-                                        <span>Повторить</span>
-                                    </button>
-                                    <button type="button" class="btn btn--2 js-rbuy">Продать</button>
-                                </div>
-                            </div>`);
-
-    $(".roulette").on("click", ".js-replay", function () {
-        window.location.reload();
-    });
-    $(".roulette").on("click", ".js-rbuy", function () {
-        popupOpen("#popup-buy");
-    });
-
-    const salyutContainer = document.querySelector(".roulette");
-    const salyut = new Fireworks(salyutContainer, {
-        /* options */
-    });
-    salyut.start();
-}
-
 //Timer
 function xtimer(id, deadline, cb) {
     // Елси передано число, создаем дату завершения
@@ -5696,160 +5274,70 @@ function xtimer(id, deadline, cb) {
     setClock(id, deadline);
 }
 
-/*--Roulette game--*/
-(function () {
-    const $roulette = $(".roulette");
+/*--Roulette Игра--*/
+function rouletteWin(winObjs) {
+    winObjs = winObjs || null;
 
-    const skins = [
-        {
-            _id: 1,
-            img: "img/content/t1.png",
-            title: "Five-SeveN",
-            stitle: "Scrawl",
-            price: "276.38",
-            rarity: 1,
-        },
-        {
-            _id: 2,
-            img: "img/content/t2.png",
-            title: "Five-SeveN",
-            stitle: "Scrawl",
-            price: "276.38",
-            rarity: 2,
-        },
-        {
-            _id: 3,
-            img: "img/content/t3.png",
-            title: "Five-SeveN",
-            stitle: "Scrawl",
-            price: "276.38",
-            rarity: 3,
-        },
-        {
-            _id: 4,
-            img: "img/content/t4.png",
-            title: "Five-SeveN",
-            stitle: "Scrawl",
-            price: "276.38",
-            rarity: 4,
-        },
-        {
-            _id: 5,
-            img: "img/content/t5.png",
-            title: "Five-SeveN",
-            stitle: "Scrawl",
-            price: "276.38",
-            rarity: 5,
-        },
-        {
-            _id: 6,
-            img: "img/content/t6.png",
-            title: "Five-SeveN",
-            stitle: "Scrawl",
-            price: "276.38",
-            rarity: 6,
-        },
-        {
-            _id: 7,
-            img: "img/content/t7.png",
-            title: "Five-SeveN",
-            stitle: "Scrawl",
-            price: "276.38",
-            rarity: 7,
-        },
-        {
-            _id: 8,
-            img: "img/content/t8.png",
-            title: "Five-SeveN",
-            stitle: "Scrawl",
-            price: "276.38",
-            rarity: 8,
-        },
-    ];
+    //Открыть быстро
+    if (!winObjs) {
+        winObjs = [];
+        let countX = $("input[name='roulette_opt']:checked").val();
 
-    // rouletteRender();
-
-    // $(".js-roulette-start").on("click", function () {
-    //     let outcome = 3; //parseInt($('input').val());
-    //     spinWheel(outcome);
-    // });
-
-    // setTimeout(function () {
-    //     let outcome = 5; //parseInt($('input').val());
-    //     spinWheel(outcome);
-    // }, 1000);
-
-    function rouletteRender() {
-        const rouletteHeight = $roulette.height();
-
-        const items = skins.map((obj) => {
-            return `<div class="roulette-line__item" data-id="${obj._id}">
-                            <div class="thing-item thing-item--${obj.rarity}">
-                                <div class="thing-item__skin">
-                                    <img src="${obj.img}" alt="" />
-                                </div>
-                                <a href="#" class="thing-item__title">                            
-                                    <span>${obj.title}</span><span class="n">${obj.stitle}</span>
-                                </a>
-                                <div class="thing-item__price">
-                                    <span>${obj.price}</span> <b>₽</b>
-                                </div>
-                            </div>
-                        </div>`;
-        });
-
-        $roulette.addClass("roulette--game").css("min-height", `${rouletteHeight}px`);
-        $roulette.html("").append('<div class="roulette-wp"/>');
-        $roulette.find(".roulette-wp").append('<div class="roulette-line"/>');
-
-        for (let x = 0; x < 29; x++) {
-            $roulette.find(".roulette-line").append(`<div class="roulette-line__row">${items.join("")}</div>`);
+        for (let x = 0; countX > x; x++) {
+            let rand = Math.floor(Math.random() * skins.length);
+            console.log(rand);
+            winObjs.push(skins[rand]);
         }
     }
 
-    function spinWheel(roll) {
-        const $wheel = $roulette.find(".roulette-line");
-        const $el = $wheel.find(".roulette-line__item");
-        const position = skins.indexOf(skins[roll - 1]);
+    const winHtml = winObjs.map(function (winObj) {
+        return `<div class="roulette-win__skin roulette-win__skin--r${winObj.rarity}">
+                    <div class="roulette-win__img">
+                        <img src="${winObj.img}" alt="" />
+                    </div>
+                    <div class="roulette-win__info">
+                        <span>${winObj.title} | ${winObj.stitle}</span>
+                        <p>${winObj.price} <b>₽</b></p>
+                    </div>
+                </div>`;
+    });
 
-        //determine position where to land
-        const rows = 9;
-        const cardWidth = +$el.width();
-        const cardMargin = parseFloat($el.css("marginLeft")) * 2;
-        const card = cardWidth + cardMargin;
-        const centerKf = skins.length / 2 + 0.5;
+    $(".roulette").addClass("roulette--wins").html(`<div class="roulette-win">
+                                <div class="roulette-win__title">Поздравляем!</div>
+                                <div class="roulette-win__list">
+                                    ${winHtml.join("")}
+                                </div>
+                                <div class="roulette-win__btns">
+                                    <button type="button" class="btn btn--1 js-replay">
+                                        <svg>
+                                            <use xlink:href="#si-replay"></use>
+                                        </svg>
+                                        <span>Повторить</span>
+                                    </button>
+                                    <button type="button" class="btn btn--2 js-rbuy">Продать</button>
+                                </div>
+                            </div>`);
 
-        /*prettier-ignore*/
-        let landingPosition = (rows * skins.length * card) + (position * card) + (card * centerKf);
+    $(".roulette").on("click", ".js-replay", function () {
+        window.location.reload();
+    });
+    $(".roulette").on("click", ".js-rbuy", function () {
+        popupOpen("#popup-buy");
+    });
 
-        const randomize = 0; //Math.floor(Math.random() * cardWidth) - cardWidth / 2;
+    const salyutContainer = document.querySelector(".roulette");
+    const salyut = new Fireworks(salyutContainer, {
+        /* options */
+    });
+    salyut.start();
 
-        landingPosition = landingPosition + randomize;
-
-        const object = {
-            x: Math.floor(Math.random() * 50) / 100,
-            y: Math.floor(Math.random() * 20) / 100,
-        };
-
-        $wheel.css({
-            "transition-timing-function": "cubic-bezier(0," + object.x + "," + object.y + ",1)",
-            "transition-duration": "6s",
-            transform: "translate3d(-" + landingPosition + "px, 0px, 0px)",
-        });
-
-        console.log(landingPosition);
-
-        setTimeout(function () {
-            $wheel.css({
-                "transition-timing-function": "",
-                "transition-duration": "",
-            });
-            // const resetTo = -(position * card + randomize);
-            // $wheel.css("transform", "translate3d(" + resetTo + "px, 0px, 0px)");
-        }, 6 * 1000);
+    if (window.innerWidth <= 1024) {
+        setTimeout(() => {
+            salyut.stop();
+            salyut.clear();
+        }, 3000);
     }
-})();
-
+}
 class Hroulette {
     constructor(opt) {
         this.$roulette = $(opt.selector);
@@ -5875,9 +5363,6 @@ class Hroulette {
                 break;
             case 5:
                 this.rouletteRenderX5();
-                break;
-            case 10:
-                this.rouletteRenderX10();
                 break;
         }
 
@@ -5987,8 +5472,6 @@ class Hroulette {
         }
     }
 
-    rouletteRenderX10() {}
-
     itemTemp(obj) {
         return `<div class="roulette-line__item" data-id="${obj._id}">
                     <div class="thing-item thing-item--${obj.rarity}">
@@ -6054,10 +5537,6 @@ class Hroulette {
                 });
 
                 rouletteWin(winObjs);
-
-                //rouletteWin(this.skins[roll - 1]);
-                // const resetTo = -(position * card + randomize);
-                // $wheel.css("transform", "translate3d(" + resetTo + "px, 0px, 0px)");
                 // this.cb();
             }, 6 * 1000 + 500);
         });
@@ -6221,8 +5700,6 @@ class Hroulette {
             xtimer(".bonus-wheel__timer", 24 * 3600 * 1000, function () {
                 console.log("End bonus-wheel__timer");
             });
-
-            console.log(obj);
         }, timer);
     };
 
@@ -6244,6 +5721,74 @@ class Hroulette {
 
     $(".bonus-wheel__btn").on("click", start);
 })();
+
+/* Skins */
+const skins = [
+    {
+        _id: 1,
+        img: "img/content/t1.png",
+        title: "Five-SeveN",
+        stitle: "Scrawl",
+        price: "276.38",
+        rarity: 1,
+    },
+    {
+        _id: 2,
+        img: "img/content/t2.png",
+        title: "Five-SeveN",
+        stitle: "Scrawl",
+        price: "276.38",
+        rarity: 2,
+    },
+    {
+        _id: 3,
+        img: "img/content/t3.png",
+        title: "Five-SeveN",
+        stitle: "Scrawl",
+        price: "276.38",
+        rarity: 3,
+    },
+    {
+        _id: 4,
+        img: "img/content/t4.png",
+        title: "Five-SeveN",
+        stitle: "Scrawl",
+        price: "276.38",
+        rarity: 4,
+    },
+    {
+        _id: 5,
+        img: "img/content/t5.png",
+        title: "Five-SeveN",
+        stitle: "Scrawl",
+        price: "276.38",
+        rarity: 5,
+    },
+    {
+        _id: 6,
+        img: "img/content/t6.png",
+        title: "Five-SeveN",
+        stitle: "Scrawl",
+        price: "276.38",
+        rarity: 6,
+    },
+    {
+        _id: 7,
+        img: "img/content/t7.png",
+        title: "Five-SeveN",
+        stitle: "Scrawl",
+        price: "276.38",
+        rarity: 7,
+    },
+    {
+        _id: 8,
+        img: "img/content/t8.png",
+        title: "Five-SeveN",
+        stitle: "Scrawl",
+        price: "276.38",
+        rarity: 8,
+    },
+];
 
 /* Onload DOM                                        
 --------------------------------------------------------*/
@@ -6341,81 +5886,17 @@ $(function () {
             rolls = [3, 2, 5, 7, 1];
         }
 
-        const skins = [
-            {
-                _id: 1,
-                img: "img/content/t1.png",
-                title: "Five-SeveN",
-                stitle: "Scrawl",
-                price: "276.38",
-                rarity: 1,
-            },
-            {
-                _id: 2,
-                img: "img/content/t2.png",
-                title: "Five-SeveN",
-                stitle: "Scrawl",
-                price: "276.38",
-                rarity: 2,
-            },
-            {
-                _id: 3,
-                img: "img/content/t3.png",
-                title: "Five-SeveN",
-                stitle: "Scrawl",
-                price: "276.38",
-                rarity: 3,
-            },
-            {
-                _id: 4,
-                img: "img/content/t4.png",
-                title: "Five-SeveN",
-                stitle: "Scrawl",
-                price: "276.38",
-                rarity: 4,
-            },
-            {
-                _id: 5,
-                img: "img/content/t5.png",
-                title: "Five-SeveN",
-                stitle: "Scrawl",
-                price: "276.38",
-                rarity: 5,
-            },
-            {
-                _id: 6,
-                img: "img/content/t6.png",
-                title: "Five-SeveN",
-                stitle: "Scrawl",
-                price: "276.38",
-                rarity: 6,
-            },
-            {
-                _id: 7,
-                img: "img/content/t7.png",
-                title: "Five-SeveN",
-                stitle: "Scrawl",
-                price: "276.38",
-                rarity: 7,
-            },
-            {
-                _id: 8,
-                img: "img/content/t8.png",
-                title: "Five-SeveN",
-                stitle: "Scrawl",
-                price: "276.38",
-                rarity: 8,
-            },
-        ];
         new Hroulette({
             selector: ".roulette",
             skins: skins,
             type: rolls.length,
             roll: rolls,
-            cb: function () {
-                console.log("end game");
-            },
         });
+    });
+
+    $("input[name='roulette_opt']").on("change", function () {
+        let price = 7;
+        $(".js-roulette-start b").text(`${price * $(this).val()}`);
     });
 
     $(document).on("click", (e) => {

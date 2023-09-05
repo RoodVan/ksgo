@@ -1797,14 +1797,23 @@ body {
         background: radial-gradient(70.71% 70.71% at 50% 50%, #5b5b5b 0%, #232323 100%);
         position: relative;
         height: 100%;
-        .si-info {
-            width: 20px;
-            height: 20px;
+        &__info {
             position: absolute;
             right: 18px;
             top: 18px;
             z-index: 1;
-            fill: #525252;
+            cursor: pointer;
+            svg {
+                fill: #525252;
+                width: 20px;
+                height: 20px;
+                transition: all 0.2s ease-in-out;
+            }
+            &:hover {
+                svg {
+                    fill: #f1f1f1;
+                }
+            }
         }
         &__img {
             padding-bottom: 10px;
@@ -4004,6 +4013,10 @@ body {
             font-size: 23px;
             font-weight: 600;
             color: #fff;
+            b {
+                margin-left: 4px;
+                margin-right: 1px;
+            }
             &--1 {
                 background: #4ac835;
                 &:hover {
@@ -4290,6 +4303,32 @@ body {
             }
         }
     }
+    &-vert {
+        border: 1px solid red;
+        margin: 50px auto;
+        &__row {
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            overflow: hidden;
+            height: 222px;
+            overflow: hidden;
+        }
+        &__col {
+            display: flex;
+            align-items: start;
+        }
+        .roulette-line__item {
+            margin: 10px;
+        }
+        &__step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 0 0 225px;
+            width: 225px;
+        }
+    }
     @media screen and (max-width: 1024px) {
         &--game {
             margin-left: -20px;
@@ -4416,12 +4455,12 @@ body {
         content: attr(data-title);
         border: 2px solid #616161;
         background-color: #010101;
-        padding: 4px 7px;
+        padding: 4px 10px;
         font-size: 13px;
         position: absolute;
-        right: 0;
-        top: -4px;
-        transform: translateY(100%);
+        right: 15px;
+        bottom: 100%;
+        transform: translateY(-30%);
         z-index: 2;
         white-space: nowrap;
         visibility: hidden;
