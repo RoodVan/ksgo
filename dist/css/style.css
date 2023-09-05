@@ -5583,7 +5583,7 @@ body {
     min-height: 72px;
     border-bottom: 2px solid #1e2339;
     text-align: center;
-    background: url(../img/fire.webp) no-repeat center bottom/contain;
+    background: url(../img/blue_header2.webp) no-repeat center bottom/contain;
     margin-bottom: 0;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -5756,7 +5756,7 @@ body {
         margin-left: -20px;
         margin-right: -20px;
         min-height: 56px;
-        background: url(../img/fire.webp) no-repeat center bottom/contain;
+        background: url(../img/blue_header2.webp) no-repeat center bottom/contain;
     }
 }
 
