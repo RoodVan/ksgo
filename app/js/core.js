@@ -5838,6 +5838,12 @@ $(function () {
         });
     }
 
+    if ($(".slot-jsumm__timer").length) {
+        xtimer(".slot-jsumm__timer", 6 * 3600 * 1000, function () {
+            console.log("End slot-jsumm__timer");
+        });
+    }
+
     //Slider
     const caseSlider = new Swiper(".js-case-carousel", {
         slidesPerView: "auto",
@@ -5871,7 +5877,7 @@ $(function () {
 
     //start game horizontal roulette
     $(".js-roulette-start").on("click", function () {
-        const val = $("input[name='roulette_opt']:checked").val();
+        let val = $("input[name='roulette_opt']:checked").length ? $("input[name='roulette_opt']:checked").val() : 1;
         let rolls = [];
 
         if (val == 1) {
