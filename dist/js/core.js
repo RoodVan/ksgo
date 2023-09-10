@@ -5722,7 +5722,139 @@ class Hroulette {
     $(".bonus-wheel__btn").on("click", start);
 })();
 
-/* Skins */
+/* -- Slot game -- */
+(function () {
+    if (!$(".slot-line").length) return;
+
+    const iconMap = ["seven", "diamond", "panzer", "guns", "chicken", "bomb", "cherry"],
+        numIcons = iconMap.length,
+        indexes = [0, 0, 0],
+        // Max-speed in ms for animating one icon down
+        timePerIcon = 100;
+
+    let play, iconHeight, cfRem;
+
+    // wins example
+    let hash = window.location.hash;
+
+    const roll = (reel, offset = 0) => {
+        // wins example
+        let random;
+        if (hash == "#seven") {
+            random = 0;
+        } else if (hash == "#diamond") {
+            random = 1;
+        } else if (hash == "#bomb") {
+            random = 5;
+        } else if (hash == "#panzer") {
+            random = offset == 0 || offset == 2 ? 6 : 2;
+        } else {
+            random = Math.round(Math.random() * numIcons);
+        }
+
+        // Minimum of 2 + the reel offset rounds
+        const delta = (offset + 2) * numIcons + random;
+
+        return new Promise((resolve, reject) => {
+            const style = getComputedStyle(reel),
+                backgroundPositionY = parseFloat(style["background-position-y"]),
+                targetBackgroundPositionY = backgroundPositionY + delta * iconHeight,
+                normTargetBackgroundPositionY = targetBackgroundPositionY % (numIcons * iconHeight);
+
+            setTimeout(() => {
+                reel.style.transition = `background-position-y ${(6 + 1 * delta) * timePerIcon}ms cubic-bezier(.41,-0.01,.63,1.09)`;
+                reel.style.backgroundPositionY = `${(backgroundPositionY + delta * iconHeight) / cfRem}rem`;
+            }, offset * 150);
+
+            // After animation
+            setTimeout(() => {
+                reel.style.transition = `none`;
+                reel.style.backgroundPositionY = `${normTargetBackgroundPositionY / cfRem}rem`;
+                resolve(delta % numIcons);
+            }, (6 + 1 * delta) * timePerIcon + offset * 150);
+        });
+    };
+
+    function rollAll() {
+        play = true;
+        const reelsList = document.querySelectorAll(".slot-reel");
+        let res = [];
+        const slotHeight = document.querySelector(".slot-line").offsetHeight;
+        iconHeight = slotHeight / 3;
+
+        //Correctly in responsive
+        if (window.innerWidth < 360) {
+            cfRem = (window.innerWidth * 2.5) / 100;
+        } else if (window.innerWidth < 1100) {
+            cfRem = (window.innerWidth * 0.9) / 100;
+        } else if (window.innerWidth < 1640) {
+            cfRem = (window.innerWidth * 0.6) / 100;
+        } else {
+            cfRem = 10;
+        }
+
+        $(".js-slot-roll").prop("disabled", true);
+
+        /*prettier-ignore*/
+        Promise.all([...reelsList].map((reel, i) => roll(reel, i)))
+        .then((deltas) => {
+            deltas.forEach((delta, i) => {indexes[i] = (indexes[i] + delta)%numIcons});
+            res = indexes.map((i) => iconMap[i]);
+            $(".js-slot-roll").prop("disabled",false);
+            play = false;
+
+            $(window).on("resize", () => {
+                //
+            });
+
+            console.log(res);
+            if( (res[0] == res[2]) && (res[0] == res[1]) ) {
+                rollWin(res[0]);
+            } else if( (res[0] == "cherry" && res[2] == "cherry")  && (res[1] == "panzer") ){
+                rollWin("cpc");
+            }
+        });
+    }
+
+    function rollWin(res) {
+        const box = $(".popup-slot-win"),
+            boxHead = box.find(".popup-head"),
+            boxImg = box.find(".popup-slot-win__img"),
+            boxTitle = box.find(".popup-slot-win__title"),
+            boxPrice = box.find(".popup-slot-win__price");
+
+        box.removeClass("__money");
+
+        if (res == "diamond") {
+            boxImg.attr("src", "../img/win-awp.png");
+            boxTitle.text("AWP | Азимов");
+            boxPrice.text("20 494.16 ₽");
+        } else if (res == "bomb") {
+            boxImg.attr("src", "../img/win-carambit.png");
+            boxTitle.text("Нож Керамбит Ночь");
+            boxPrice.text("82 282.88 ₽");
+        } else if (res == "seven") {
+            boxImg.attr("src", "../img/win-money.png");
+            boxTitle.text("Вся сумма на счетчике х2");
+            boxPrice.text("");
+            box.addClass("__money");
+        } else if (res == "cpc") {
+            boxImg.attr("src", "../img/win-p90.png");
+            boxTitle.text("P90 | Азимов");
+            boxPrice.text("5 473.57 ₽");
+        } else {
+            return;
+        }
+
+        popupOpen("#popup-slot-win");
+    }
+
+    if ($(".js-slot-roll").length) {
+        $(".js-slot-roll").on("click", rollAll);
+    }
+})();
+
+/* Skins array */
 const skins = [
     {
         _id: 1,
@@ -5793,7 +5925,6 @@ const skins = [
 /* Onload DOM                                        
 --------------------------------------------------------*/
 $(function () {
-    $(".preloader").fadeOut("slow");
     //mob menu
     $(".js-toggle-menu").on("click", function () {
         $("body").toggleClass("menu--open");
@@ -5813,6 +5944,11 @@ $(function () {
     //свернуть
     $(".btn--case-switch").on("click", function () {
         $(this).closest(".case").toggleClass("case--hide");
+    });
+
+    //слот ваши победы
+    $(".slot-info__h4mob").on("click", function () {
+        $(this).closest(".slot-info__table").toggleClass("__open");
     });
 
     //pays

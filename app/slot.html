@@ -20,7 +20,7 @@
         <link rel="icon" href="favicon.svg" />
 
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="css/style.min.css?v=0.03" />
+        <link rel="stylesheet" href="css/style.min.css?v=0.04" />
     </head>
     <body>
         <div class="wrapper">
@@ -184,10 +184,16 @@
                             <div class="slot-jsumm__timer"><span data-hours></span> : <span data-minutes></span> : <span data-seconds></span></div>
                         </div>
 
-                        <div class="slot-line">line</div>
+                        <div class="slot-sep"><span></span></div>
+
+                        <div class="slot-line">
+                            <div class="slot-reel"></div>
+                            <div class="slot-reel"></div>
+                            <div class="slot-reel"></div>
+                        </div>
                         <!-- ./slot-line -->
                         <div class="slot-foot">
-                            <button type="button" class="btn slot-btn--red">77<b>₽</b></button>
+                            <button type="button" class="btn slot-btn--red js-slot-roll">77<b>₽</b></button>
                             <span class="slot-foot__txt">Осталось <b>3</b> попытки</span>
                         </div>
                     </div>
@@ -196,12 +202,18 @@
                         <div class="slot-info__top">
                             <div class="slot-info__rules">
                                 <h4>Джек пот</h4>
-                                <button type="button" class="btn">Правила игры</button>
+                                <button type="button" onclick="popupOpen('#popup-rules');" class="btn">Правила игры</button>
                             </div>
 
                             <div class="slot-info__table">
                                 <h4>Ваши победы:</h4>
-                                <ul>
+                                <span class="slot-info__h4mob">
+                                    <span>Ваши победы</span>
+                                    <svg>
+                                        <use xlink:href="#si-down"></use>
+                                    </svg>
+                                </span>
+                                <ul class="slot-info__ul">
                                     <li>
                                         <span>01.08.2023</span>
                                         <b>AWP | Азимов</b>
@@ -413,6 +425,53 @@
             <div class="popup-overlay"></div>
         </div>
         <!-- ./ popup-win -->
+
+        <div class="popup" id="popup-slot-win">
+            <div class="popup-container popup-slot-win">
+                <a href="javascript:popupClose('#popup-slot-win')" class="popup-close"></a>
+                <div class="popup-head">Поздравляем!</div>
+                <div class="popup-body">
+                    <h4>Ваш выигрыш:</h4>
+                    <img src="img/win-money.png" class="popup-slot-win__img" alt="" />
+                    <p class="popup-slot-win__title">Мощный бонусный баланс</p>
+                    <p class="popup-slot-win__price">82 282.88 ₽</p>
+                </div>
+                <div class="popup-footer">
+                    <button class="btn btn--pop" onclick="popupClose('#popup-slot-win')">Забрать</button>
+                </div>
+            </div>
+            <div class="popup-overlay"></div>
+        </div>
+        <!-- ./ popup-win -->
+
+        <div class="popup" id="popup-rules">
+            <div class="popup-container popup-rules">
+                <a href="javascript:popupClose('#popup-rules')" class="popup-close"></a>
+                <div class="popup-head">Правила игры</div>
+                <div class="popup-body popup-body--rules">
+                    <p>
+                        Правила игры:<br />
+                        На экране крутится 3 слота. Выигрыш достаётся, если выпали 4 определённые комбинации.
+                    </p>
+                    <p>Цена за игру - 77 рублей, с возможностью 3 раза покрутить слоты.</p>
+                    <p>1) 3 алмаза - «AWP | Азимов»<br />2) Вишня-Танк-Вишня - «P90 | Азимов»<br />3) 3 бомбы - «Нож "Керамбит ночь"»</p>
+                    <p>4) 7 7 7 - ДЖЕКПОТ! Вы выигрываете всю сумму на счётчике сверху.</p>
+                    <p>
+                        Сверху есть счётчик баланса, в который, в течение 6 часов, игроки вкладывали в слоты.<br />
+                        При выигрыше ДЖЕК ПОТ - вся эта сумма зачисляется вам на баланс.<br />После того, как 6 часов прошли, сумма обнуляется и начинает пополняться вновь.
+                    </p>
+                    <p>
+                        <strong>ВНИМАНИЕ!!!</strong><br />Данный вид игры является частью сервиса по открытию кейсов и несёт исключительно игровую форму! Игрокам даётся возможность
+                        умножить остаток своего баланса для открытия новых кейсов.
+                    </p>
+                </div>
+                <div class="popup-footer">
+                    <button class="btn btn--pop" onclick="popupClose('#popup-rules')">Понятно!</button>
+                </div>
+            </div>
+            <div class="popup-overlay"></div>
+        </div>
+        <!-- ./ popup-rules -->
         <!-- POPUPS END -->
 
         <!-- SVG SPRITE BEGIN  -->
@@ -807,11 +866,16 @@
                         fill="white"
                     />
                 </symbol>
+                <symbol id="si-card" viewBox="0 0 29 21">
+                    <path
+                        d="M25.3926 0.716309H3.39258C2.59693 0.716309 1.83387 1.03238 1.27126 1.59499C0.708649 2.1576 0.392578 2.92066 0.392578 3.71631V17.7163C0.392578 18.512 0.708649 19.275 1.27126 19.8376C1.83387 20.4002 2.59693 20.7163 3.39258 20.7163H25.3926C26.1882 20.7163 26.9513 20.4002 27.5139 19.8376C28.0765 19.275 28.3926 18.512 28.3926 17.7163V3.71631C28.3926 2.92066 28.0765 2.1576 27.5139 1.59499C26.9513 1.03238 26.1882 0.716309 25.3926 0.716309ZM3.39258 2.71631H25.3926C25.6578 2.71631 25.9121 2.82167 26.0997 3.0092C26.2872 3.19674 26.3926 3.45109 26.3926 3.71631V5.71631H2.39258V3.71631C2.39258 3.45109 2.49794 3.19674 2.68547 3.0092C2.87301 2.82167 3.12736 2.71631 3.39258 2.71631ZM25.3926 18.7163H3.39258C3.12736 18.7163 2.87301 18.611 2.68547 18.4234C2.49794 18.2359 2.39258 17.9815 2.39258 17.7163V9.71631H26.3926V17.7163C26.3926 17.9815 26.2872 18.2359 26.0997 18.4234C25.9121 18.611 25.6578 18.7163 25.3926 18.7163Z"
+                    />
+                </symbol>
             </svg>
         </div>
         <!-- ./ SVG SPRITE END  -->
 
         <script src="js/libs/jquery.min.js"></script>
-        <script src="js/core.min.js?v=0.9"></script>
+        <script src="js/core.min.js?v=0.01"></script>
     </body>
 </html>
