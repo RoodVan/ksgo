@@ -5825,6 +5825,7 @@ class Hroulette {
 
         box.removeClass("__money");
         boxHead.text("Поздравляем!");
+        boxImg.attr("src", "");
 
         if (res == "diamond") {
             boxImg.attr("src", "./img/win-awp.png");
