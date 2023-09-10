@@ -5824,22 +5824,24 @@ class Hroulette {
             boxPrice = box.find(".popup-slot-win__price");
 
         box.removeClass("__money");
+        boxHead.text("Поздравляем!");
 
         if (res == "diamond") {
-            boxImg.attr("src", "../img/win-awp.png");
+            boxImg.attr("src", "/img/win-awp.png");
             boxTitle.text("AWP | Азимов");
             boxPrice.text("20 494.16 ₽");
         } else if (res == "bomb") {
-            boxImg.attr("src", "../img/win-carambit.png");
+            boxImg.attr("src", "/img/win-carambit.png");
             boxTitle.text("Нож Керамбит Ночь");
             boxPrice.text("82 282.88 ₽");
         } else if (res == "seven") {
-            boxImg.attr("src", "../img/win-money.png");
+            boxHead.text("ДЖЕК ПОТ!!!");
+            boxImg.attr("src", "/img/win-money.png");
             boxTitle.text("Вся сумма на счетчике х2");
             boxPrice.text("");
             box.addClass("__money");
         } else if (res == "cpc") {
-            boxImg.attr("src", "../img/win-p90.png");
+            boxImg.attr("src", "/img/win-p90.png");
             boxTitle.text("P90 | Азимов");
             boxPrice.text("5 473.57 ₽");
         } else {
