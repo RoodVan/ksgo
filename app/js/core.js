@@ -5834,6 +5834,7 @@ class Hroulette {
 
 			generateWin(obj)
 			renderChips([])
+			wvals = []
 		}, timer)
 	}
 
