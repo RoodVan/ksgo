@@ -6205,7 +6205,39 @@ $(function () {
 	//pays
 	$('.js-pays').on('change', "input[type='radio']", function () {
 		const imgSrc = $(this).closest('.pay-item').find('img').attr('src')
+		const val = $(this).val()
 		$('.js-pay-img').attr('src', imgSrc)
+
+		if (val == 'card') {
+			if ($('.js-pay-inp').length) {
+				$('.js-pay-inp').find('svg').attr('class', 'si-card')
+				$('.js-pay-inp').find('use').attr('xlink:href', '#si-card')
+				$('.js-pay-inp').find('.inp').attr('placeholder', 'Карта')
+			}
+
+			$('.pay-method__info').find('strong').html('CARD')
+		} else {
+			if ($('.js-pay-inp').length) {
+				$('.js-pay-inp').find('svg').attr('class', 'si-wallet')
+				$('.js-pay-inp').find('use').attr('xlink:href', '#si-wallet-1')
+				$('.js-pay-inp').find('.inp').attr('placeholder', 'Кошелек')
+			}
+
+			$('.pay-method__info').find('strong').html('WALLET')
+		}
+	})
+	//btn withdraw
+	$('.js-btn-witdhdraw').one('click', function () {
+		//$(this).removeClass('js-btn-witdhdraw')
+		$(this).removeClass('btn--green')
+		$(this).prop('disabled', true)
+		$(this).addClass('btn--timer')
+
+		$(this).html('<span data-hours></span> : <span data-minutes></span> : <span data-seconds></span>')
+
+		xtimer('.js-btn-witdhdraw', 20 * 60 * 1000, function () {
+			console.log('End witdhdraw btn')
+		})
 	})
 
 	//Favorite
