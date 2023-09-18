@@ -2823,6 +2823,7 @@ body {
 		text-align: center;
 		padding: 8px 8px 10px;
 		margin-top: -1px;
+		cursor: move;
 	}
 
 	&-body {
@@ -2874,7 +2875,8 @@ body {
 		max-width: 1024px;
 		padding-bottom: 40px;
 		background: url(../img/bg-slot-win.jpg) no-repeat top center / cover;
-		min-height: 70vh;
+		height: 80vh;
+		max-height: 657px;
 		display: flex;
 		flex-direction: column;
 		&.__money {
@@ -5738,6 +5740,11 @@ body {
 			position: relative;
 			padding-top: 13rem;
 		}
+		&-wheel {
+			&_wp {
+				margin-left: -2.5rem;
+			}
+		}
 	}
 	@media screen and (max-width: 760px) {
 		&-main {
@@ -5771,6 +5778,7 @@ body {
 				width: 36rem;
 				height: 36rem;
 				background: url(../img/bg-wheel-lights.png) no-repeat center center / 48rem auto;
+				margin-left: 0;
 				&:after {
 					content: '';
 					width: 5.5rem;
@@ -5787,6 +5795,11 @@ body {
 		}
 		&-board {
 			padding-top: 10rem;
+		}
+	}
+	@media screen and (min-width: 1900px) {
+		&-main {
+			background: url(../img/bg-wheel-rbot.png) no-repeat right bottom / 145rem auto;
 		}
 	}
 }

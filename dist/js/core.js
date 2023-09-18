@@ -5111,12 +5111,11 @@
 /* Functions                                        
 --------------------------------------------------------*/
 function popupClose(id) {
-	$(id + ' .popup-overlay').css('opacity', '0')
-	$(id + ' .popup-container').css('opacity', '0')
-
 	$('body').css({ overflow: '', 'margin-right': 0 })
 
 	setTimeout(function () {
+		$(id + ' .popup-overlay').css('opacity', '0')
+		$(id + ' .popup-container').css({ opacity: '0', left: '50%', top: '50%' })
 		$(id).hide(0)
 	}, 300)
 }
@@ -5130,9 +5129,11 @@ function popupAllClose(id) {
 }
 
 function popupOpen(id) {
-	const width = window.innerWidth > 0 ? window.innerWidth : screen.width
-	const height = window.innerHeight > 0 ? window.innerHeight : screen.height
+	const width = window.innerWidth || screen.width
+	const height = window.innerHeight || screen.height
 	const scrollSize = scrollbarSize()
+	const box = document.querySelector(`${id} > .popup-container`),
+		boxHead = box.querySelector('.popup-head')
 
 	popupAllClose(id)
 
@@ -5165,6 +5166,39 @@ function popupOpen(id) {
 				.css({ transform: 'translate(-50%,-50%)', top: '50%', opacity: '1' })
 		}
 	})
+
+	boxHead.onmousedown = function (event) {
+		let shiftX = event.clientX - boxHead.getBoundingClientRect().left
+		let shiftY = event.clientY - boxHead.getBoundingClientRect().top
+		let scrolTop = $(window).scrollTop()
+
+		moveAt(event.pageX, event.pageY)
+
+		// переносит на координаты (pageX, pageY),
+		// дополнительно учитывая изначальный сдвиг относительно указателя мыши
+		function moveAt(pageX, pageY) {
+			box.style.transform = 'translate(0,0)'
+			box.style.left = pageX - shiftX + 'px'
+			box.style.top = pageY - shiftY - scrolTop + 'px'
+		}
+
+		function onMouseMove(event) {
+			moveAt(event.pageX, event.pageY)
+		}
+
+		// передвигаем при событии mousemove
+		document.addEventListener('mousemove', onMouseMove)
+
+		// отпустить, удалить ненужные обработчики
+		boxHead.onmouseup = function () {
+			document.removeEventListener('mousemove', onMouseMove)
+			boxHead.onmouseup = null
+		}
+	}
+
+	boxHead.ondragstart = function () {
+		return false
+	}
 }
 
 function scrollbarSize() {
